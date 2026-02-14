@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paperify - Premium Paper Packaging | Vadodara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Paperclip';
+            src: url('fonts/paperclip-bold.otf') format('opentype');
+            font-weight: 700;
+        }
+
+        :root {
+            --kraft: #A89080;
+            --dark: #1A1A1A;
+            --light: #FAFAF8;
+            --accent: #2D2D2D;
+            --border: #E5E3DF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(250, 250, 248, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: opacity 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dark);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-btn {
+            background: var(--dark);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .cart-count {
+            background: white;
+            color: var(--dark);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 3rem 4rem;
+            background: linear-gradient(180deg, var(--light) 0%, #F5F3F0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(168, 144, 128, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 50px) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: var(--kraft);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            color: var(--dark);
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--dark);
+            color: white;
+            border: 1px solid var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--dark);
+        }
+
+        /* Section */
+        section {
+            padding: 8rem 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--kraft);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            border-radius: 24px;
+            padding: 6rem 4rem;
+            margin: 0 3rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            letter-spacing: -1px;
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 16px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--kraft);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Categories Grid */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-color: var(--kraft);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #F5F3F0 0%, #E8E6E3 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-image::after {
+            content: 'Image';
+            position: absolute;
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .category-info {
+            padding: 2rem;
+        }
+
+        .category-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .category-info p {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Products Grid */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--dark);
+            background: var(--light);
+        }
+
+        .filter-btn.active {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 320px;
+            background: linear-gradient(135deg, #F5F3F0 0%, #E8E6E3 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image::after {
+            content: 'Product Image';
+            position: absolute;
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--kraft);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .add-to-cart {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--dark);
+            color: white;
+            border-radius: 24px;
+            padding: 6rem 4rem;
+            margin: 4rem 3rem;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-item h4 {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--kraft);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .contact-item strong {
+            font-weight: 700;
+            opacity: 1;
+        }
+
+        /* Cart Panel */
+        .cart-panel {
+            position: fixed;
+            right: -500px;
+            top: 0;
+            width: 500px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 50px rgba(0,0,0,0.1);
+            transition: right 0.4s ease;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Paperclip', sans-serif;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .close-cart:hover {
+            background: var(--light);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-price {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .remove-item:hover {
+            color: #e74c3c;
+        }
+
+        .cart-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--dark);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1.1rem;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .nav-container {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .about-section {
+                padding: 3rem 2rem;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">p</div>
+                paperify
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="cart-btn" onclick="toggleCart()">
+                Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">Eco-Friendly Packaging</div>
+            <h1>Premium Paper<br>Packaging</h1>
+            <p>Sustainable, high-quality paper bags and packaging solutions crafted for modern businesses in Vadodara and beyond.</p>
+            <div class="cta-buttons">
+                <a href="#products" class="btn-primary">Browse Collection</a>
+                <a href="#contact" class="btn-secondary">Get Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <div class="section-label">About Us</div>
+                <h2>Crafting Quality Since 2025</h2>
+                <p>Founded in Vadodara, Paperify specializes in premium paper packaging solutions for businesses across Gujarat and beyond. We combine traditional craftsmanship with modern manufacturing to deliver eco-friendly packaging that elevates your brand.</p>
+                <p>From food-grade butter paper to custom printed carry bags and industrial machinery, we offer comprehensive solutions tailored to your industry needs.</p>
+                <ul class="features-list">
+                    <li>100% eco-friendly and biodegradable materials</li>
+                    <li>Custom printing and branding services</li>
+                    <li>Food-grade certified packaging</li>
+                    <li>Fast turnaround on bulk orders</li>
+                    <li>Competitive wholesale pricing</li>
+                </ul>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Product Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Quality Assured</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-label">Collections</div>
+            <h2 class="section-title">Explore Our Range</h2>
+            <p class="section-subtitle">Premium paper packaging solutions tailored for every industry</p>
+        </div>
+        <div class="categories">
+            <div class="category-card fade-in" onclick="filterCategory('butter')">
+                <div class="category-image"></div>
+                <div class="category-info">
+                    <h3>Butter Paper</h3>
+                    <p>Food-grade bags and sheets for bakeries and restaurants</p>
+                </div>
+            </div>
+            <div class="category-card fade-in" onclick="filterCategory('carry')">
+                <div class="category-image"></div>
+                <div class="category-info">
+                    <h3>Carry Bags</h3>
+                    <p>Printed and plain bags for retail excellence</p>
+                </div>
+            </div>
+            <div class="category-card fade-in" onclick="filterCategory('pharmacy')">
+                <div class="category-image"></div>
+                <div class="category-info">
+                    <h3>Medical Bags</h3>
+                    <p>Pharmaceutical-grade packaging solutions</p>
+                </div>
+            </div>
+            <div class="category-card fade-in" onclick="filterCategory('machines')">
+                <div class="category-image"></div>
+                <div class="category-info">
+                    <h3>Machines</h3>
+                    <p>Industrial printing and manufacturing equipment</p>
+                </div>
+            </div>
+            <div class="category-card fade-in" onclick="filterCategory('specialty')">
+                <div class="category-image"></div>
+                <div class="category-info">
+                    <h3>Specialty Range</h3>
+                    <p>Mailer, SOS, and custom packaging solutions</p>
+                </div>
+            </div>
+            <div class="category-card fade-in" onclick="filterCategory('all')">
+                <div class="category-image"></div>
+                <div class="category-info">
+                    <h3>View All</h3>
+                    <p>Browse our complete product catalog</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+        <div class="section-header fade-in">
+            <div class="section-label">Products</div>
+            <h2 class="section-title">Our Collection</h2>
+        </div>
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+            <button class="filter-btn" onclick="filterProducts('butter')">Butter Paper</button>
+            <button class="filter-btn" onclick="filterProducts('carry')">Carry Bags</button>
+            <button class="filter-btn" onclick="filterProducts('pharmacy')">Pharmacy</button>
+            <button class="filter-btn" onclick="filterProducts('machines')">Machines</button>
+            <button class="filter-btn" onclick="filterProducts('specialty')">Specialty</button>
+        </div>
+        <div class="products" id="productsGrid"></div>
+    </section>
+
+    <!-- Contact -->
+    <div class="contact-section" id="contact">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title" style="color: white; margin-top: 1rem;">Let's Work Together</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Call Us</h4>
+                <p><strong>+91 79428 30171</strong></p>
+                <p>Mon - Sat, 9 AM - 7 PM</p>
+            </div>
+            <div class="contact-item">
+                <h4>Visit</h4>
+                <p>07, Jay Mangal Society<br>Zaver Nagar, Uma Char Rasta<br>Vadodara - 390019, Gujarat</p>
+            </div>
+            <div class="contact-item">
+                <h4>Business</h4>
+                <p><strong>GST:</strong> 24ENAPP6835H1ZU</p>
+                <p><strong>CEO:</strong> Jay Pancholi</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Paperify. All rights reserved. Premium Paper Packaging Solutions.</p>
+    </footer>
+
+    <!-- Cart Panel -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3>Your Enquiry</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" id="userName" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label>Phone *</label>
+                <input type="tel" id="userPhone" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="userEmail" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea id="userNotes" rows="2" placeholder="Quantity, delivery location..."></textarea>
+            </div>
+            <button class="checkout-btn" onclick="submitEnquiry()">Send Enquiry via WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, name: '2kg Printed Butter Paper Bag', price: '₹170/Kg', category: 'butter', desc: 'Food-grade, custom printing available' },
+            { id: 2, name: '4kg Printed Butter Paper Bag', price: '₹180/Kg', category: 'butter', desc: 'Large capacity, premium quality' },
+            { id: 3, name: '1kg Printed Butter Paper Bag', price: '₹165/Kg', category: 'butter', desc: 'Compact, retail-friendly' },
+            { id: 4, name: '40 GSM Butter Paper Sheet', price: '₹92/Kg', category: 'butter', desc: 'Food-safe wrapping paper' },
+            { id: 5, name: 'Printed Butter Paper Sheet', price: '₹150/Kg', category: 'butter', desc: 'Custom branding available' },
+            { id: 6, name: 'Food Grade Butter Paper', price: '₹95/Kg', category: 'butter', desc: 'Certified food-safe' },
+            { id: 7, name: 'Plain Butter Paper Bag', price: '₹149/Kg', category: 'butter', desc: 'Versatile plain design' },
+            { id: 8, name: '10" Printed Carry Bag', price: '₹5/Piece', category: 'carry', desc: 'Medium retail size' },
+            { id: 9, name: '12" Printed Carry Bag', price: '₹8/Kg', category: 'carry', desc: 'Large shopping bag' },
+            { id: 10, name: '10" Plain Carry Bag', price: '₹5/Piece', category: 'carry', desc: 'Eco-friendly option' },
+            { id: 11, name: 'Customized Carry Bag', price: '₹7/Piece', category: 'carry', desc: 'Your logo & design' },
+            { id: 12, name: '2kg Medical Pharmacy Bag', price: '₹95/Kg', category: 'pharmacy', desc: 'Medical-grade certified' },
+            { id: 13, name: '4kg Medical Pharmacy Bag', price: '₹150/Kg', category: 'pharmacy', desc: 'Pharma compliance' },
+            { id: 14, name: 'Two Color Printing Machine', price: '₹8.5L/Unit', category: 'machines', desc: 'Industrial capacity' },
+            { id: 15, name: 'Four Color Printing Machine', price: '₹9.5L/Unit', category: 'machines', desc: 'Advanced printing' },
+            { id: 16, name: 'Paper Bag Making Machine', price: '₹6L/Unit', category: 'machines', desc: 'High-speed production' },
+            { id: 17, name: 'Paper Mailer Bag', price: '₹5/Piece', category: 'specialty', desc: 'E-commerce ready' },
+            { id: 18, name: 'SOS Paper Bag', price: '₹95/Kg', category: 'specialty', desc: 'Flat-bottom design' },
+            { id: 19, name: 'BBQ Foil Paper Bag', price: '₹280/Kg', category: 'specialty', desc: 'Heat-resistant' },
+            { id: 20, name: 'Paper Food Bag', price: 'Contact', category: 'specialty', desc: 'Custom food packaging' },
+            { id: 21, name: 'Paper Gift Bag', price: 'Contact', category: 'specialty', desc: 'Premium gifting' }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+            
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card fade-in">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <div class="product-tag">${p.category}</div>
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-desc">${p.desc}</div>
+                        <div class="product-footer">
+                            <div class="product-price">${p.price}</div>
+                            <button class="add-to-cart" onclick="addToCart(${p.id})">Add</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeElements();
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts();
+        }
+
+        function filterCategory(category) {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                const btn = Array.from(document.querySelectorAll('.filter-btn')).find(b => b.textContent.toLowerCase().includes(category));
+                if (btn) btn.click();
+            }, 500);
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (!cart.find(p => p.id === id)) {
+                cart.push(product);
+                updateCart();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(p => p.id !== id);
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById('cartCount').textContent = cart.length;
+            const container = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p></div>';
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price}</div>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartPanel').classList.toggle('open');
+        }
+
+        function submitEnquiry() {
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const email = document.getElementById('userEmail').value;
+            const notes = document.getElementById('userNotes').value;
+
+            if (!name || !phone || !email) {
+                alert('Please fill required fields');
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert('Cart is empty');
+                return;
+            }
+
+            const items = cart.map(p => `• ${p.name} (${p.price})`).join('\n');
+            const message = `*Paperify Enquiry*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nProducts:\n${items}\n\nNotes: ${notes || 'None'}`;
+            
+            window.open(`https://wa.me/917942830171?text=${encodeURIComponent(message)}`, '_blank');
+            
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // Scroll animations
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                document.getElementById('nav').classList.add('scrolled');
+            } else {
+                document.getElementById('nav').classList.remove('scrolled');
+            }
+        });
+
+        // Initialize
+        renderProducts();
+        updateCart();
+        observeElements();
+    </script>
+</body>
+</html>
