@@ -1411,7 +1411,7 @@ function sendEnquiry(){
   if(!cart.length){ showToast('Add at least one product first'); return; }
   const lines=cart.map(p=>`• ${p.name} (${p.price})`).join('\n');
   const msg=`*Paperify Enquiry*\n\nName: ${n}\nPhone: ${ph}\nEmail: ${em}\n\nProducts:\n${lines}\n\nNotes: ${nt||'None'}`;
-  window.open(`https://wa.me/917942830171?text=${encodeURIComponent(msg)}`,'_blank');
+  window.open(`https://wa.me/919662728203?text=${encodeURIComponent(msg)}`,'_blank');
   cart=[]; updateBubble(); renderProducts(); closeCart(); showToast('Enquiry sent!');
 }
 
