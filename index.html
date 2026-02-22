@@ -1,1234 +1,1447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paperify - Premium Paper Packaging | Vadodara</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: 'Paperclip';
-            src: url('fonts/paperclip-bold.otf') format('opentype');
-            font-weight: 700;
-        }
-
-        :root {
-            --kraft: #A89080;
-            --dark: #1A1A1A;
-            --light: #FAFAF8;
-            --accent: #2D2D2D;
-            --border: #E5E3DF;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            font-weight: 400;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(250, 250, 248, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(250, 250, 248, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
-        }
-
-        .nav-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--dark);
-            letter-spacing: -0.5px;
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--dark);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: opacity 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--dark);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cart-btn {
-            background: var(--dark);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 100px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-        }
-
-        .cart-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .cart-count {
-            background: white;
-            color: var(--dark);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 3rem 4rem;
-            background: linear-gradient(180deg, var(--light) 0%, #F5F3F0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(168, 144, 128, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-50px, 50px) scale(1.1); }
-        }
-
-        .hero-content {
-            max-width: 900px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            color: var(--kraft);
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-            color: var(--dark);
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: 300;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2.5rem;
-            border-radius: 100px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--dark);
-            color: white;
-            border: 1px solid var(--dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--dark);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            border-color: var(--dark);
-        }
-
-        /* Section */
-        section {
-            padding: 8rem 3rem;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 5rem;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--kraft);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            font-weight: 300;
-            line-height: 1.8;
-        }
-
-        /* About Section */
-        .about-section {
-            background: white;
-            border-radius: 24px;
-            padding: 6rem 4rem;
-            margin: 0 3rem;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .about-text h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--dark);
-            letter-spacing: -1px;
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.9;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--light);
-            border-radius: 16px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 400;
-        }
-
-        .features-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .features-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 1rem;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-
-        .features-list li::before {
-            content: '✓';
-            color: var(--kraft);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        /* Categories Grid */
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .category-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            border-color: var(--kraft);
-        }
-
-        .category-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, #F5F3F0 0%, #E8E6E3 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .category-image::after {
-            content: 'Image';
-            position: absolute;
-            font-size: 0.9rem;
-            color: #999;
-            font-weight: 300;
-        }
-
-        .category-info {
-            padding: 2rem;
-        }
-
-        .category-info h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .category-info p {
-            font-size: 0.95rem;
-            color: #666;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        /* Products Grid */
-        .filters {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.7rem 1.5rem;
-            border: 1px solid var(--border);
-            background: white;
-            border-radius: 100px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            color: var(--dark);
-        }
-
-        .filter-btn:hover {
-            border-color: var(--dark);
-            background: var(--light);
-        }
-
-        .filter-btn.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .product-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 320px;
-            background: linear-gradient(135deg, #F5F3F0 0%, #E8E6E3 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-image::after {
-            content: 'Product Image';
-            position: absolute;
-            font-size: 0.9rem;
-            color: #999;
-            font-weight: 300;
-        }
-
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-tag {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--kraft);
-            margin-bottom: 0.8rem;
-        }
-
-        .product-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-        }
-
-        .product-desc {
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .add-to-cart {
-            background: var(--dark);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 100px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .add-to-cart:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        /* Contact */
-        .contact-section {
-            background: var(--dark);
-            color: white;
-            border-radius: 24px;
-            padding: 6rem 4rem;
-            margin: 4rem 3rem;
-            text-align: center;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-            margin-top: 4rem;
-        }
-
-        .contact-item h4 {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--kraft);
-            margin-bottom: 1rem;
-        }
-
-        .contact-item p {
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-
-        .contact-item strong {
-            font-weight: 700;
-            opacity: 1;
-        }
-
-        /* Cart Panel */
-        .cart-panel {
-            position: fixed;
-            right: -500px;
-            top: 0;
-            width: 500px;
-            height: 100vh;
-            background: white;
-            box-shadow: -5px 0 50px rgba(0,0,0,0.1);
-            transition: right 0.4s ease;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-panel.open {
-            right: 0;
-        }
-
-        .cart-header {
-            padding: 2rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-header h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            font-family: 'Paperclip', sans-serif;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .close-cart:hover {
-            background: var(--light);
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-name {
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-            font-size: 0.95rem;
-        }
-
-        .cart-item-price {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .remove-item {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: color 0.3s;
-        }
-
-        .remove-item:hover {
-            color: #e74c3c;
-        }
-
-        .cart-footer {
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.9rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: border 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--dark);
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 1.1rem;
-            background: var(--dark);
-            color: white;
-            border: none;
-            border-radius: 100px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            margin-top: 1rem;
-        }
-
-        .checkout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: #999;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 3rem;
-            margin-top: 4rem;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Mobile */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .categories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .categories {
-                grid-template-columns: 1fr;
-            }
-
-            .products {
-                grid-template-columns: 1fr;
-            }
-
-            .cart-panel {
-                width: 100%;
-                right: -100%;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .nav-container {
-                padding: 1.5rem 1.5rem;
-            }
-
-            .about-section {
-                padding: 3rem 2rem;
-            }
-
-            .about-text h2 {
-                font-size: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paperify — Premium Paper Packaging</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════════════ */
+:root {
+  --c-bg:      #F8F4EE;
+  --c-bg2:     #F0EAE0;
+  --c-ink:     #1A1510;
+  --c-ink60:   rgba(26,21,16,.6);
+  --c-ink30:   rgba(26,21,16,.3);
+  --c-ink08:   rgba(26,21,16,.08);
+  --c-ink04:   rgba(26,21,16,.04);
+  --c-gold:    #9B6F3C;
+  --c-gold-lt: #C49060;
+  --c-white:   #FDFBF8;
+  --c-dark:    #100E0B;
+  --r:         2px;
+  --f-serif:   'Cormorant Garamond', Georgia, serif;
+  --f-sans:    'Outfit', system-ui, sans-serif;
+  --ease:      cubic-bezier(0.16,1,.3,1);
+  --ease2:     cubic-bezier(0.4,0,.2,1);
+  --dur:       0.6s;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  font-family: var(--f-sans);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+/* grain */
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9990; opacity:.6;
+}
+
+/* ════════════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════════════ */
+#cd, #cr {
+  position:fixed; border-radius:50%;
+  pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%);
+}
+#cd {
+  width:8px; height:8px;
+  background:var(--c-gold);
+  transition:width .3s var(--ease), height .3s var(--ease), background .3s;
+}
+#cr {
+  width:40px; height:40px;
+  border:1px solid rgba(155,111,60,.5);
+  transition:width .4s var(--ease), height .4s var(--ease),
+             border-color .3s, opacity .3s;
+}
+.cur-grow #cd { width:12px; height:12px; }
+.cur-grow #cr { width:64px; height:64px; border-color:var(--c-gold); }
+.cur-text #cd { width:0; height:0; background:transparent; }
+.cur-text #cr { width:80px; height:80px; }
+
+/* ════════════════════════════════════════════════
+   PROGRESS BAR
+════════════════════════════════════════════════ */
+#progress {
+  position:fixed; top:0; left:0; right:0; height:2px;
+  background:var(--c-gold); transform-origin:left;
+  transform:scaleX(0); z-index:9995;
+  transition:transform .1s linear;
+}
+
+/* ════════════════════════════════════════════════
+   NAV
+════════════════════════════════════════════════ */
+nav {
+  position:fixed; inset:0 0 auto 0; z-index:800;
+  height:60px; padding:0 4rem;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:background .5s var(--ease), border-color .5s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled {
+  background:rgba(248,244,238,.92);
+  backdrop-filter:blur(20px);
+  border-color:var(--c-ink08);
+}
+
+.nav-logo {
+  font-family:var(--f-serif);
+  font-size:1.5rem; font-weight:400;
+  letter-spacing:-.02em;
+  color:var(--c-ink); text-decoration:none; cursor:none;
+  position:relative; z-index:2;
+}
+
+.nav-links {
+  position:absolute; left:50%; transform:translateX(-50%);
+  display:flex; gap:2.5rem;
+}
+.nav-links a {
+  font-size:.75rem; font-weight:400;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--c-ink60); text-decoration:none; cursor:none;
+  transition:color .3s;
+  position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; left:0; right:0;
+  height:1px; background:var(--c-gold);
+  transform:scaleX(0); transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav-links a:hover { color:var(--c-ink); }
+.nav-links a:hover::after { transform:scaleX(1); transform-origin:left; }
+
+.nav-right { display:flex; align-items:center; gap:1.2rem; position:relative; z-index:2; }
+
+.nav-enquiry {
+  font-family:var(--f-sans);
+  font-size:.72rem; font-weight:400;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--c-ink); background:none;
+  border:1px solid var(--c-ink30);
+  padding:.5rem 1.3rem; cursor:none;
+  transition:all .35s var(--ease);
+  display:flex; align-items:center; gap:.6rem;
+}
+.nav-enquiry:hover {
+  background:var(--c-ink); color:var(--c-white);
+  border-color:var(--c-ink);
+}
+.nav-bubble {
+  width:18px; height:18px; border-radius:50%;
+  background:var(--c-gold); color:#fff;
+  font-size:.62rem; font-weight:500;
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .3s var(--ease);
+}
+.nav-enquiry:hover .nav-bubble { transform:scale(1.15); }
+
+/* hamburger */
+.hamburger {
+  display:none; flex-direction:column; gap:6px;
+  background:none; border:none; cursor:none; padding:4px;
+}
+.hamburger span {
+  display:block; width:26px; height:1px;
+  background:var(--c-ink);
+  transition:transform .4s var(--ease), opacity .3s;
+}
+.hamburger.open span:first-child { transform:rotate(45deg) translate(5px,5px); }
+.hamburger.open span:last-child  { transform:rotate(-45deg) translate(5px,-5px); }
+
+/* ════════════════════════════════════════════════
+   MOBILE MENU
+════════════════════════════════════════════════ */
+.mob-menu {
+  position:fixed; inset:0;
+  background:var(--c-bg);
+  z-index:790; display:flex;
+  flex-direction:column; justify-content:flex-end;
+  padding:3rem 2.5rem 4rem;
+  pointer-events:none; opacity:0;
+  transition:opacity .45s var(--ease);
+}
+.mob-menu.open { opacity:1; pointer-events:all; }
+
+.mob-menu a {
+  font-family:var(--f-serif);
+  font-size:clamp(2.5rem,8vw,3.5rem);
+  font-weight:300; letter-spacing:-.02em;
+  color:var(--c-ink); text-decoration:none; cursor:none;
+  padding:.6rem 0; border-bottom:1px solid var(--c-ink08);
+  display:block;
+  transform:translateX(-30px); opacity:0;
+  transition:transform .5s var(--ease), opacity .5s var(--ease), color .3s;
+}
+.mob-menu a:last-child { border:none; }
+.mob-menu a:hover { color:var(--c-gold); padding-left:.5rem; }
+.mob-menu.open a { transform:none; opacity:1; }
+.mob-menu.open a:nth-child(1){transition-delay:.05s}
+.mob-menu.open a:nth-child(2){transition-delay:.10s}
+.mob-menu.open a:nth-child(3){transition-delay:.15s}
+.mob-menu.open a:nth-child(4){transition-delay:.20s}
+
+/* ════════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════════ */
+.hero {
+  min-height:100svh;
+  background:var(--c-bg);
+  display:grid;
+  grid-template-rows:1fr auto;
+  position:relative; overflow:hidden;
+}
+
+/* parallax bg lines */
+.hero-lines {
+  position:absolute; inset:0;
+  display:grid; grid-template-columns:repeat(12,1fr);
+  pointer-events:none; z-index:0;
+}
+.hero-lines span {
+  border-right:1px solid var(--c-ink04);
+}
+
+.hero-watermark {
+  position:absolute;
+  right:-2rem; bottom:-1rem;
+  font-family:var(--f-serif);
+  font-size:clamp(14rem,26vw,28rem);
+  font-weight:600; line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(26,21,16,.06);
+  pointer-events:none; user-select:none;
+  will-change:transform;
+}
+
+.hero-body {
+  padding:10rem 4rem 0;
+  position:relative; z-index:1;
+  display:flex; flex-direction:column;
+  align-items:flex-start;
+}
+
+.hero-tag {
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.7rem; font-weight:400;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--c-gold); margin-bottom:3rem;
+  opacity:0; animation:riseIn .9s .2s var(--ease) forwards;
+}
+.hero-tag-line { width:32px; height:1px; background:var(--c-gold); }
+
+.hero-h1 {
+  font-family:var(--f-serif);
+  font-size:clamp(3.5rem,8.5vw,9rem);
+  font-weight:300; line-height:1.02;
+  letter-spacing:-.03em;
+  color:var(--c-ink);
+  max-width:14ch;
+}
+
+.hero-h1 .clip { overflow:hidden; display:block; }
+.hero-h1 .clip span {
+  display:block;
+  transform:translateY(110%);
+  animation:slideUp .9s var(--ease) forwards;
+}
+.hero-h1 .clip:nth-child(1) span { animation-delay:.35s }
+.hero-h1 .clip:nth-child(2) span { animation-delay:.48s }
+.hero-h1 .clip:nth-child(3) span { animation-delay:.61s }
+.hero-h1 em { font-style:italic; color:var(--c-gold); font-weight:300; }
+
+.hero-foot {
+  padding:0 4rem 5rem;
+  position:relative; z-index:1;
+  display:flex; justify-content:space-between;
+  align-items:flex-end; gap:2rem;
+}
+.hero-desc {
+  font-size:.95rem; font-weight:300;
+  color:var(--c-ink60); line-height:1.85;
+  max-width:32ch;
+  opacity:0; animation:riseIn .9s 1.1s var(--ease) forwards;
+}
+.hero-actions {
+  display:flex; gap:1rem; flex-wrap:wrap;
+  opacity:0; animation:riseIn .9s 1.25s var(--ease) forwards;
+}
+
+/* magnetic buttons */
+.btn-solid {
+  font-family:var(--f-sans);
+  font-size:.75rem; font-weight:400;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--c-white); background:var(--c-ink);
+  border:1px solid var(--c-ink);
+  padding:1rem 2.4rem; cursor:none;
+  text-decoration:none; display:inline-block;
+  transition:all .35s var(--ease);
+  position:relative; overflow:hidden;
+}
+.btn-solid::before {
+  content:''; position:absolute; inset:0;
+  background:var(--c-gold); transform:translateX(-102%);
+  transition:transform .45s var(--ease);
+}
+.btn-solid:hover::before { transform:translateX(0); }
+.btn-solid span { position:relative; z-index:1; }
+
+.btn-line {
+  font-family:var(--f-sans);
+  font-size:.75rem; font-weight:400;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--c-ink60); background:none;
+  border:none; padding:1rem 0; cursor:none;
+  text-decoration:none; display:inline-flex;
+  align-items:center; gap:.6rem;
+  transition:color .3s;
+}
+.btn-line:hover { color:var(--c-ink); }
+.btn-line-arrow {
+  width:28px; height:1px; background:currentColor;
+  position:relative; transition:width .35s var(--ease);
+  display:inline-block;
+}
+.btn-line-arrow::after {
+  content:''; position:absolute; right:0; top:-3px;
+  width:6px; height:6px;
+  border-right:1px solid currentColor;
+  border-top:1px solid currentColor;
+  transform:rotate(45deg);
+}
+.btn-line:hover .btn-line-arrow { width:44px; }
+
+/* scroll indicator */
+.hero-scroll {
+  position:absolute; bottom:4rem; right:4rem;
+  display:flex; flex-direction:column;
+  align-items:center; gap:1rem;
+  opacity:0; animation:riseIn .9s 1.6s var(--ease) forwards;
+}
+.hero-scroll-label {
+  font-size:.62rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--c-ink30);
+  writing-mode:vertical-rl;
+}
+.hero-scroll-track {
+  width:1px; height:64px;
+  background:var(--c-ink08); position:relative; overflow:hidden;
+}
+.hero-scroll-fill {
+  position:absolute; inset:0;
+  background:var(--c-gold);
+  transform:translateY(-100%);
+  animation:scrollFill 2s 2s ease-in-out infinite;
+}
+@keyframes scrollFill {
+  0%   { transform:translateY(-100%); }
+  50%  { transform:translateY(0); }
+  100% { transform:translateY(100%); }
+}
+
+/* ════════════════════════════════════════════════
+   MARQUEE
+════════════════════════════════════════════════ */
+.marquee-wrap {
+  background:var(--c-ink); padding:1.2rem 0;
+  overflow:hidden; position:relative;
+}
+.marquee-inner {
+  display:flex; width:max-content;
+  animation:marquee 28s linear infinite;
+}
+.marquee-inner:hover { animation-play-state:paused; }
+.m-item {
+  display:flex; align-items:center; gap:2rem;
+  padding:0 2rem; white-space:nowrap;
+  font-size:.7rem; font-weight:300;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:rgba(253,251,248,.4);
+}
+.m-sep {
+  width:4px; height:4px; border-radius:50%;
+  background:var(--c-gold); flex-shrink:0;
+}
+@keyframes marquee { to { transform:translateX(-50%); } }
+
+/* ════════════════════════════════════════════════
+   SECTION SHARED
+════════════════════════════════════════════════ */
+.s-label {
+  font-size:.68rem; font-weight:400;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--c-gold); margin-bottom:1.2rem; display:block;
+}
+.s-title {
+  font-family:var(--f-serif);
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:400; line-height:1.1;
+  letter-spacing:-.025em; color:var(--c-ink);
+}
+.s-title em { font-style:italic; color:var(--c-gold); }
+.s-body {
+  font-size:.9rem; font-weight:300;
+  color:var(--c-ink60); line-height:1.9;
+}
+
+/* ════════════════════════════════════════════════
+   ABOUT — SPLIT
+════════════════════════════════════════════════ */
+.about {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:90vh;
+  border-top:1px solid var(--c-ink08);
+}
+
+.about-visual {
+  background:var(--c-bg2);
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.about-vis-num {
+  font-family:var(--f-serif);
+  font-size:clamp(12rem,20vw,20rem);
+  font-weight:600; line-height:1;
+  color:transparent; -webkit-text-stroke:1px rgba(26,21,16,.1);
+  user-select:none; will-change:transform;
+  transition:transform .1s linear;
+}
+.about-vis-caption {
+  position:absolute; bottom:2.5rem; left:2.5rem; right:2.5rem;
+  display:flex; align-items:center; gap:1.5rem;
+}
+.about-vis-caption::before {
+  content:''; width:40px; height:1px; background:var(--c-ink30);
+}
+.about-vis-caption span {
+  font-size:.65rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--c-ink30);
+}
+
+.about-content {
+  padding:7rem 5rem;
+  display:flex; flex-direction:column; justify-content:center;
+  border-left:1px solid var(--c-ink08);
+}
+
+.checklist { margin-top:2.5rem; }
+.check-row {
+  display:flex; align-items:center; gap:1.2rem;
+  padding:1.1rem 0; border-bottom:1px solid var(--c-ink08);
+  font-size:.88rem; font-weight:300; color:var(--c-ink);
+  transition:padding-left .3s var(--ease), color .3s;
+  cursor:default;
+}
+.check-row:first-child { border-top:1px solid var(--c-ink08); }
+.check-row:hover { padding-left:.6rem; color:var(--c-gold); }
+.check-icon {
+  width:22px; height:22px; border-radius:50%;
+  border:1px solid var(--c-gold-lt);
+  flex-shrink:0; position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+.check-icon svg { width:10px; height:10px; stroke:var(--c-gold); stroke-width:2; fill:none; }
+
+/* ════════════════════════════════════════════════
+   NUMBERS BAND
+════════════════════════════════════════════════ */
+.nums {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--c-ink08);
+}
+.num-block {
+  padding:4.5rem 3rem;
+  border-right:1px solid var(--c-ink08);
+  position:relative; overflow:hidden;
+  cursor:default;
+}
+.num-block:last-child { border-right:none; }
+.num-block::before {
+  content:''; position:absolute; inset:0;
+  background:var(--c-bg2); transform:translateY(101%);
+  transition:transform .5s var(--ease);
+}
+.num-block:hover::before { transform:translateY(0); }
+
+.num-val {
+  font-family:var(--f-serif);
+  font-size:clamp(2.8rem,4.5vw,4rem);
+  font-weight:300; letter-spacing:-.04em;
+  color:var(--c-ink); line-height:1;
+  margin-bottom:.6rem; display:block;
+  position:relative;
+}
+.num-label {
+  font-size:.78rem; font-weight:300;
+  color:var(--c-ink60); line-height:1.5;
+  position:relative;
+}
+
+/* ════════════════════════════════════════════════
+   PRODUCTS
+════════════════════════════════════════════════ */
+.products {
+  padding:8rem 4rem;
+  border-top:1px solid var(--c-ink08);
+}
+
+.prod-header {
+  display:flex; align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:4rem; gap:2rem;
+  flex-wrap:wrap;
+}
+
+.filter-strip {
+  display:flex; border:1px solid var(--c-ink08);
+}
+.fp {
+  font-family:var(--f-sans);
+  font-size:.68rem; font-weight:400;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--c-ink60); background:none;
+  border:none; border-right:1px solid var(--c-ink08);
+  padding:.6rem 1.3rem; cursor:none;
+  transition:all .25s;
+  white-space:nowrap;
+}
+.fp:last-child { border-right:none; }
+.fp:hover { color:var(--c-ink); background:var(--c-bg2); }
+.fp.active { background:var(--c-ink); color:var(--c-white); }
+
+.prod-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:1px solid var(--c-ink08);
+}
+
+/* product card */
+.pc {
+  border-right:1px solid var(--c-ink08);
+  border-bottom:1px solid var(--c-ink08);
+  position:relative; overflow:hidden;
+  cursor:none;
+  transition:background .4s var(--ease);
+}
+.pc:hover { background:var(--c-bg2); }
+/* remove duplicate borders at right/bottom edges */
+.prod-grid .pc:nth-child(4n) { border-right:none; }
+
+.pc-visual {
+  height:180px; position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--c-bg2);
+  border-bottom:1px solid var(--c-ink08);
+}
+
+/* SVG icon inside each card */
+.pc-visual svg {
+  width:56px; height:56px;
+  stroke:var(--c-ink30); fill:none; stroke-width:1;
+  transition:stroke .4s var(--ease), transform .5s var(--ease);
+}
+.pc:hover .pc-visual svg { stroke:var(--c-gold); transform:scale(1.12) rotate(-4deg); }
+
+.pc-label {
+  position:absolute; top:1rem; left:1.2rem;
+  font-size:.6rem; font-weight:400;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--c-gold);
+}
+
+.pc-body { padding:1.6rem 1.4rem 1.4rem; }
+.pc-name {
+  font-family:var(--f-serif);
+  font-size:1.05rem; font-weight:400;
+  color:var(--c-ink); line-height:1.25;
+  margin-bottom:.4rem;
+}
+.pc-desc {
+  font-size:.75rem; font-weight:300;
+  color:var(--c-ink60); line-height:1.55;
+  margin-bottom:1.2rem;
+}
+.pc-foot {
+  display:flex; align-items:center;
+  justify-content:space-between;
+}
+.pc-price {
+  font-family:var(--f-serif);
+  font-size:1.1rem; letter-spacing:-.02em;
+  color:var(--c-ink);
+}
+.pc-add {
+  width:34px; height:34px; border-radius:50%;
+  background:var(--c-ink); color:var(--c-white);
+  border:none; cursor:none; font-size:1.1rem;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .35s var(--ease); flex-shrink:0;
+  position:relative; overflow:hidden;
+}
+.pc-add::before {
+  content:''; position:absolute; inset:0;
+  background:var(--c-gold); border-radius:50%;
+  transform:scale(0); transition:transform .35s var(--ease);
+}
+.pc-add:hover::before { transform:scale(1); }
+.pc-add svg, .pc-add-icon { position:relative; z-index:1; }
+.pc-add.added { background:var(--c-gold); }
+.pc-add.added::before { transform:scale(1); }
+
+/* ════════════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════════════ */
+.contact {
+  background:var(--c-dark);
+  padding:9rem 4rem;
+  position:relative; overflow:hidden;
+}
+.contact-wm {
+  position:absolute; right:-1rem; bottom:-1rem;
+  font-family:var(--f-serif);
+  font-size:clamp(10rem,18vw,18rem);
+  font-weight:600; line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(253,251,248,.04);
+  pointer-events:none; user-select:none;
+}
+
+.contact-inner {
+  max-width:1200px; margin:0 auto; position:relative;
+}
+
+.contact .s-label { color:var(--c-gold); }
+.contact .s-title { color:var(--c-white); margin-bottom:6rem; max-width:16ch; }
+.contact .s-title em { color:var(--c-gold-lt); }
+
+.c-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(253,251,248,.07);
+  margin-bottom:5rem;
+}
+.c-block {
+  padding:3rem 3rem 3rem 0;
+  border-right:1px solid rgba(253,251,248,.07);
+  margin-right:3rem;
+  transition:background .4s;
+}
+.c-block:last-child { border-right:none; padding-right:0; margin-right:0; }
+
+.c-block-label {
+  font-size:.63rem; font-weight:400;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(253,251,248,.3); margin-bottom:1.2rem; display:block;
+}
+.c-phone {
+  font-family:var(--f-serif);
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  color:var(--c-white); font-weight:300;
+  letter-spacing:-.02em; line-height:1.2;
+  display:block; margin-bottom:.4rem;
+}
+.c-sub {
+  font-size:.78rem; font-weight:300;
+  color:rgba(253,251,248,.3); line-height:1.7;
+}
+.c-val {
+  font-size:.92rem; font-weight:300;
+  color:rgba(253,251,248,.75); line-height:1.8;
+}
+.c-val strong { color:var(--c-white); font-weight:400; }
+
+.wa-btn {
+  display:inline-flex; align-items:center; gap:.9rem;
+  font-family:var(--f-sans);
+  font-size:.75rem; font-weight:400;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:#fff; background:#25D366; border:none;
+  padding:1.1rem 3rem; cursor:none;
+  text-decoration:none;
+  transition:all .4s var(--ease);
+  position:relative; overflow:hidden;
+}
+.wa-btn::before {
+  content:''; position:absolute; inset:0;
+  background:#1ebe5d; transform:translateX(-101%);
+  transition:transform .45s var(--ease);
+}
+.wa-btn:hover::before { transform:translateX(0); }
+.wa-btn > * { position:relative; z-index:1; }
+.wa-btn:hover { letter-spacing:.18em; }
+
+/* ════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════ */
+footer {
+  background:var(--c-dark);
+  border-top:1px solid rgba(253,251,248,.07);
+  padding:2rem 4rem;
+  display:flex; align-items:center;
+  justify-content:space-between; gap:1rem;
+  flex-wrap:wrap;
+}
+.f-logo {
+  font-family:var(--f-serif);
+  font-size:1.1rem; color:rgba(253,251,248,.2); font-weight:300;
+}
+footer p {
+  font-size:.72rem; font-weight:300;
+  color:rgba(253,251,248,.2); letter-spacing:.04em;
+}
+
+/* ════════════════════════════════════════════════
+   CART DRAWER
+════════════════════════════════════════════════ */
+.scrim {
+  position:fixed; inset:0;
+  background:rgba(26,21,16,.55);
+  backdrop-filter:blur(6px);
+  z-index:900; opacity:0; pointer-events:none;
+  transition:opacity .5s var(--ease);
+}
+.scrim.open { opacity:1; pointer-events:all; }
+
+.drawer {
+  position:fixed; top:0; right:-600px;
+  width:min(560px,100vw); height:100svh;
+  background:var(--c-white); z-index:910;
+  display:flex; flex-direction:column;
+  transition:right .55s var(--ease);
+  box-shadow:-24px 0 80px rgba(26,21,16,.1);
+}
+.drawer.open { right:0; }
+
+.d-head {
+  padding:1.8rem 2.5rem;
+  border-bottom:1px solid var(--c-ink08);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.d-title {
+  font-family:var(--f-serif);
+  font-size:1.5rem; font-weight:400; letter-spacing:-.02em;
+}
+.d-close {
+  font-family:var(--f-sans);
+  font-size:.68rem; font-weight:400; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--c-ink60);
+  background:none; border:none; cursor:none;
+  transition:color .3s; display:flex; align-items:center; gap:.5rem;
+}
+.d-close svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:1.5; }
+.d-close:hover { color:var(--c-ink); }
+
+.d-body { flex:1; overflow-y:auto; padding:1.5rem 2.5rem; }
+
+.d-empty {
+  height:100%; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:1.5rem; color:var(--c-ink30); text-align:center;
+}
+.d-empty-icon {
+  width:64px; height:64px; border:1px solid var(--c-ink08);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+.d-empty-icon svg { width:28px; height:28px; stroke:var(--c-ink30); fill:none; stroke-width:1; }
+.d-empty p { font-size:.85rem; font-weight:300; line-height:1.7; }
+
+.d-item {
+  display:flex; gap:1.2rem; padding:1.2rem 0;
+  border-bottom:1px solid var(--c-ink08);
+  align-items:center;
+}
+.d-item-box {
+  width:52px; height:52px;
+  background:var(--c-bg2);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.d-item-box svg { width:24px; height:24px; stroke:var(--c-ink60); fill:none; stroke-width:1; }
+.d-item-info { flex:1; min-width:0; }
+.d-item-name {
+  font-size:.88rem; font-weight:400;
+  color:var(--c-ink); margin-bottom:.2rem; line-height:1.3;
+}
+.d-item-price { font-size:.78rem; font-weight:300; color:var(--c-ink60); }
+.d-rm {
+  font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--c-ink30); background:none; border:none; cursor:none;
+  transition:color .3s; white-space:nowrap;
+}
+.d-rm:hover { color:#c0392b; }
+
+.d-form {
+  padding:2rem 2.5rem;
+  border-top:1px solid var(--c-ink08);
+  background:var(--c-bg);
+}
+.d-form-label {
+  font-size:.65rem; font-weight:400; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--c-ink60); margin-bottom:1.2rem; display:block;
+}
+.form-2 { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin-bottom:.7rem; }
+
+.fi {
+  width:100%; font-family:var(--f-sans);
+  font-size:.85rem; font-weight:300;
+  color:var(--c-ink); background:var(--c-white);
+  border:1px solid var(--c-ink08);
+  padding:.75rem 1rem; outline:none;
+  transition:border-color .3s;
+}
+.fi:focus { border-color:var(--c-gold); }
+.fi::placeholder { color:var(--c-ink30); }
+textarea.fi { resize:none; }
+.mb7 { margin-bottom:.7rem; }
+
+.d-send {
+  width:100%; font-family:var(--f-sans);
+  font-size:.72rem; font-weight:400; letter-spacing:.12em;
+  text-transform:uppercase; color:#fff;
+  background:#25D366; border:none; padding:1.05rem;
+  cursor:none; display:flex; align-items:center;
+  justify-content:center; gap:.7rem; margin-top:.9rem;
+  transition:all .4s var(--ease); position:relative; overflow:hidden;
+}
+.d-send::before {
+  content:''; position:absolute; inset:0;
+  background:#1ebe5d; transform:translateX(-101%);
+  transition:transform .45s var(--ease);
+}
+.d-send:hover::before { transform:translateX(0); }
+.d-send > * { position:relative; z-index:1; }
+.d-send:hover { letter-spacing:.18em; }
+.d-send svg { width:16px; height:16px; fill:white; flex-shrink:0; }
+
+/* ════════════════════════════════════════════════
+   TOAST
+════════════════════════════════════════════════ */
+.toast {
+  position:fixed; bottom:2.5rem; left:50%;
+  transform:translateX(-50%) translateY(1.5rem);
+  background:var(--c-ink); color:var(--c-white);
+  font-size:.75rem; font-weight:300; letter-spacing:.06em;
+  padding:.85rem 2rem; z-index:9999;
+  opacity:0; pointer-events:none;
+  transition:all .45s var(--ease);
+  white-space:nowrap;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ════════════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════════════ */
+@keyframes riseIn {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes slideUp {
+  from { transform:translateY(110%); }
+  to   { transform:translateY(0); }
+}
+
+.reveal {
+  opacity:0; transform:translateY(28px);
+  transition:opacity .8s var(--ease), transform .8s var(--ease);
+}
+.reveal.in { opacity:1; transform:translateY(0); }
+.rd1 { transition-delay:.12s; }
+.rd2 { transition-delay:.22s; }
+.rd3 { transition-delay:.32s; }
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════ */
+@media(max-width:1200px) {
+  .prod-grid { grid-template-columns:repeat(3,1fr); }
+  .prod-grid .pc:nth-child(4n) { border-right:1px solid var(--c-ink08); }
+  .prod-grid .pc:nth-child(3n) { border-right:none; }
+}
+@media(max-width:960px) {
+  nav { padding:0 2rem; }
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .hero-body { padding:8rem 2rem 0; }
+  .hero-foot { padding:0 2rem 4rem; flex-direction:column; align-items:flex-start; }
+  .hero-scroll { right:2rem; bottom:4rem; }
+  .about { grid-template-columns:1fr; }
+  .about-content { border-left:none; border-top:1px solid var(--c-ink08); padding:4rem 2rem; }
+  .about-visual { min-height:50vmax; }
+  .nums { grid-template-columns:repeat(2,1fr); }
+  .num-block:nth-child(2) { border-right:none; }
+  .num-block:nth-child(3) { border-right:1px solid var(--c-ink08); }
+  .products { padding:5rem 2rem; }
+  .prod-header { flex-direction:column; align-items:flex-start; }
+  .prod-grid { grid-template-columns:repeat(2,1fr); }
+  .prod-grid .pc:nth-child(3n) { border-right:1px solid var(--c-ink08); }
+  .prod-grid .pc:nth-child(2n) { border-right:none; }
+  .contact { padding:6rem 2rem; }
+  .c-grid { grid-template-columns:1fr; }
+  .c-block { border-right:none; padding-right:0; margin-right:0; border-bottom:1px solid rgba(253,251,248,.07); margin-bottom:2.5rem; }
+  .c-block:last-child { border-bottom:none; margin-bottom:0; }
+  footer { padding:1.5rem 2rem; }
+}
+@media(max-width:600px) {
+  nav { padding:0 1.5rem; }
+  .hero-body { padding:7rem 1.5rem 0; }
+  .hero-foot { padding:0 1.5rem 3.5rem; }
+  .hero-scroll { display:none; }
+  .nums { grid-template-columns:repeat(2,1fr); }
+  .num-block { padding:3rem 1.5rem; }
+  .prod-grid { grid-template-columns:1fr 1fr; }
+  .filter-strip { flex-wrap:wrap; }
+  .fp { border-bottom:1px solid var(--c-ink08); }
+  .contact { padding:5rem 1.5rem; }
+  footer { flex-direction:column; text-align:center; }
+  .form-2 { grid-template-columns:1fr; }
+}
+@media(max-width:440px) {
+  .prod-grid { grid-template-columns:1fr; }
+  .prod-grid .pc:nth-child(2n) { border-right:none; }
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="nav">
-        <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">p</div>
-                paperify
-            </div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#products">Products</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="cart-btn" onclick="toggleCart()">
-                Cart
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">Eco-Friendly Packaging</div>
-            <h1>Premium Paper<br>Packaging</h1>
-            <p>Sustainable, high-quality paper bags and packaging solutions crafted for modern businesses in Vadodara and beyond.</p>
-            <div class="cta-buttons">
-                <a href="#products" class="btn-primary">Browse Collection</a>
-                <a href="#contact" class="btn-secondary">Get Quote</a>
-            </div>
-        </div>
-    </section>
+<!-- CURSOR -->
+<div id="cd"></div>
+<div id="cr"></div>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <div class="about-text">
-                <div class="section-label">About Us</div>
-                <h2>Crafting Quality Since 2025</h2>
-                <p>Founded in Vadodara, Paperify specializes in premium paper packaging solutions for businesses across Gujarat and beyond. We combine traditional craftsmanship with modern manufacturing to deliver eco-friendly packaging that elevates your brand.</p>
-                <p>From food-grade butter paper to custom printed carry bags and industrial machinery, we offer comprehensive solutions tailored to your industry needs.</p>
-                <ul class="features-list">
-                    <li>100% eco-friendly and biodegradable materials</li>
-                    <li>Custom printing and branding services</li>
-                    <li>Food-grade certified packaging</li>
-                    <li>Fast turnaround on bulk orders</li>
-                    <li>Competitive wholesale pricing</li>
-                </ul>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Happy Clients</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Product Categories</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Quality Assured</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support Available</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- PROGRESS -->
+<div id="progress"></div>
 
-    <!-- Categories -->
-    <section>
-        <div class="section-header fade-in">
-            <div class="section-label">Collections</div>
-            <h2 class="section-title">Explore Our Range</h2>
-            <p class="section-subtitle">Premium paper packaging solutions tailored for every industry</p>
-        </div>
-        <div class="categories">
-            <div class="category-card fade-in" onclick="filterCategory('butter')">
-                <div class="category-image"></div>
-                <div class="category-info">
-                    <h3>Butter Paper</h3>
-                    <p>Food-grade bags and sheets for bakeries and restaurants</p>
-                </div>
-            </div>
-            <div class="category-card fade-in" onclick="filterCategory('carry')">
-                <div class="category-image"></div>
-                <div class="category-info">
-                    <h3>Carry Bags</h3>
-                    <p>Printed and plain bags for retail excellence</p>
-                </div>
-            </div>
-            <div class="category-card fade-in" onclick="filterCategory('pharmacy')">
-                <div class="category-image"></div>
-                <div class="category-info">
-                    <h3>Medical Bags</h3>
-                    <p>Pharmaceutical-grade packaging solutions</p>
-                </div>
-            </div>
-            <div class="category-card fade-in" onclick="filterCategory('machines')">
-                <div class="category-image"></div>
-                <div class="category-info">
-                    <h3>Machines</h3>
-                    <p>Industrial printing and manufacturing equipment</p>
-                </div>
-            </div>
-            <div class="category-card fade-in" onclick="filterCategory('specialty')">
-                <div class="category-image"></div>
-                <div class="category-info">
-                    <h3>Specialty Range</h3>
-                    <p>Mailer, SOS, and custom packaging solutions</p>
-                </div>
-            </div>
-            <div class="category-card fade-in" onclick="filterCategory('all')">
-                <div class="category-image"></div>
-                <div class="category-info">
-                    <h3>View All</h3>
-                    <p>Browse our complete product catalog</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a class="nav-logo" href="#">Paperify</a>
+  <div class="nav-links">
+    <a href="#about-sec">About</a>
+    <a href="#products-sec">Products</a>
+    <a href="#contact-sec">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-enquiry" onclick="openCart()">
+      Enquiry List
+      <span class="nav-bubble" id="nb">0</span>
+    </button>
+    <button class="hamburger" id="hbg" onclick="toggleMob()">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-    <!-- Products -->
-    <section id="products">
-        <div class="section-header fade-in">
-            <div class="section-label">Products</div>
-            <h2 class="section-title">Our Collection</h2>
-        </div>
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
-            <button class="filter-btn" onclick="filterProducts('butter')">Butter Paper</button>
-            <button class="filter-btn" onclick="filterProducts('carry')">Carry Bags</button>
-            <button class="filter-btn" onclick="filterProducts('pharmacy')">Pharmacy</button>
-            <button class="filter-btn" onclick="filterProducts('machines')">Machines</button>
-            <button class="filter-btn" onclick="filterProducts('specialty')">Specialty</button>
-        </div>
-        <div class="products" id="productsGrid"></div>
-    </section>
+<!-- ══ MOB NAV ══ -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#about-sec"    onclick="closeMob()">About</a>
+  <a href="#products-sec" onclick="closeMob()">Products</a>
+  <a href="#contact-sec"  onclick="closeMob()">Contact</a>
+  <a href="#"             onclick="openCart();closeMob()">Enquiry</a>
+</div>
 
-    <!-- Contact -->
-    <div class="contact-section" id="contact">
-        <div class="section-label">Get In Touch</div>
-        <h2 class="section-title" style="color: white; margin-top: 1rem;">Let's Work Together</h2>
-        <div class="contact-grid">
-            <div class="contact-item">
-                <h4>Call Us</h4>
-                <p><strong>+91 79428 30171</strong></p>
-                <p>Mon - Sat, 9 AM - 7 PM</p>
-            </div>
-            <div class="contact-item">
-                <h4>Visit</h4>
-                <p>07, Jay Mangal Society<br>Zaver Nagar, Uma Char Rasta<br>Vadodara - 390019, Gujarat</p>
-            </div>
-            <div class="contact-item">
-                <h4>Business</h4>
-                <p><strong>GST:</strong> 24ENAPP6835H1ZU</p>
-                <p><strong>CEO:</strong> Jay Pancholi</p>
-            </div>
-        </div>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-lines" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-watermark" id="hwm">Paperify</div>
+
+  <div class="hero-body">
+    <div class="hero-tag">
+      <span class="hero-tag-line"></span>
+      Premium Paper Packaging &nbsp;&middot;&nbsp; Vadodara, Gujarat
+    </div>
+    <h1 class="hero-h1">
+      <span class="clip"><span>Packaging</span></span>
+      <span class="clip"><span>with <em>purpose.</em></span></span>
+      <span class="clip"><span>Made in India.</span></span>
+    </h1>
+  </div>
+
+  <div class="hero-foot">
+    <p class="hero-desc">Custom paper packaging for food, retail, and pharmaceutical industries — from butter paper to branded carry bags.</p>
+    <div class="hero-actions">
+      <a class="btn-solid" href="#products-sec"><span>View Collection</span></a>
+      <a class="btn-line" href="#contact-sec">Get a Quote <span class="btn-line-arrow"></span></a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-track"><div class="hero-scroll-fill"></div></div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-wrap">
+  <div class="marquee-inner" id="mq"></div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div class="about" id="about-sec">
+  <div class="about-visual">
+    <div class="about-vis-num" id="aVisNum">8</div>
+    <div class="about-vis-caption">
+      <span>Est. 2016 &middot; Vadodara, Gujarat</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <span class="s-label reveal">Our Story</span>
+    <h2 class="s-title reveal rd1">Built on craft,<br><em>driven by quality.</em></h2>
+    <p class="s-body reveal rd2" style="margin-top:1.5rem;margin-bottom:0">
+      Since 2016, Paperify has supplied premium paper packaging to businesses across Gujarat. Led by Jay Pancholi, we combine local craftsmanship with industrial scale — serving bakeries, pharmacies, and retailers with packaging that works as hard as they do.
+    </p>
+    <div class="checklist reveal rd3">
+      <div class="check-row">
+        <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8,3"/></svg></span>
+        Food-safe &amp; FDA-compliant materials
+      </div>
+      <div class="check-row">
+        <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8,3"/></svg></span>
+        Custom logo &amp; multi-colour printing
+      </div>
+      <div class="check-row">
+        <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8,3"/></svg></span>
+        Bulk wholesale pricing &amp; fast turnaround
+      </div>
+      <div class="check-row">
+        <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8,3"/></svg></span>
+        Pan-India delivery from Vadodara
+      </div>
+      <div class="check-row">
+        <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8,3"/></svg></span>
+        GST Registered: 24ENAPP6835H1ZU
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATS ══ -->
+<div class="nums" id="stats-sec">
+  <div class="num-block reveal">
+    <span class="num-val" data-to="500">0</span>
+    <span class="num-label">Clients served<br>across Gujarat</span>
+  </div>
+  <div class="num-block reveal rd1">
+    <span class="num-val" data-to="21">0</span>
+    <span class="num-label">Product SKUs<br>available</span>
+  </div>
+  <div class="num-block reveal rd2">
+    <span class="num-val" data-to="8">0</span>
+    <span class="num-label">Years in<br>the industry</span>
+  </div>
+  <div class="num-block reveal rd3">
+    <span class="num-val">4C</span>
+    <span class="num-label">Max colour<br>printing</span>
+  </div>
+</div>
+
+<!-- ══ PRODUCTS ══ -->
+<div class="products" id="products-sec">
+  <div class="prod-header reveal">
+    <div>
+      <span class="s-label">Catalogue</span>
+      <h2 class="s-title">The full range</h2>
+    </div>
+    <div class="filter-strip" id="filters">
+      <button class="fp active" onclick="doFilter('all',this)">All</button>
+      <button class="fp" onclick="doFilter('butter',this)">Butter Paper</button>
+      <button class="fp" onclick="doFilter('carry',this)">Carry Bags</button>
+      <button class="fp" onclick="doFilter('pharmacy',this)">Pharmacy</button>
+      <button class="fp" onclick="doFilter('machines',this)">Machines</button>
+      <button class="fp" onclick="doFilter('specialty',this)">Specialty</button>
+    </div>
+  </div>
+  <div class="prod-grid" id="pg"></div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="contact" id="contact-sec">
+  <div class="contact-wm">Contact</div>
+  <div class="contact-inner">
+    <span class="s-label reveal">Get In Touch</span>
+    <h2 class="s-title reveal rd1">Let's create<br>something <em>together.</em></h2>
+
+    <div class="c-grid">
+      <div class="c-block reveal">
+        <span class="c-block-label">Call Us</span>
+        <span class="c-phone">+91 79428 30171</span>
+        <span class="c-sub">Monday – Saturday &nbsp;&middot;&nbsp; 9 AM – 7 PM</span>
+      </div>
+      <div class="c-block reveal rd1">
+        <span class="c-block-label">Visit</span>
+        <span class="c-val">07, Jay Mangal Society<br>Zaver Nagar, Uma Char Rasta<br>Vadodara – 390019, Gujarat</span>
+      </div>
+      <div class="c-block reveal rd2">
+        <span class="c-block-label">Business</span>
+        <span class="c-val">
+          <strong>CEO:</strong> Jay Pancholi<br>
+          <strong>GST:</strong> 24ENAPP6835H1ZU<br>
+          <strong>Est.</strong> 2016
+        </span>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Paperify. All rights reserved. Premium Paper Packaging Solutions.</p>
-    </footer>
+    <a class="wa-btn" href="https://wa.me/917942830171" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>Chat on WhatsApp</span>
+    </a>
+  </div>
+</div>
 
-    <!-- Cart Panel -->
-    <div class="cart-panel" id="cartPanel">
-        <div class="cart-header">
-            <h3>Your Enquiry</h3>
-            <button class="close-cart" onclick="toggleCart()">×</button>
-        </div>
-        <div class="cart-items" id="cartItems"></div>
-        <div class="cart-footer">
-            <div class="form-group">
-                <label>Name *</label>
-                <input type="text" id="userName" placeholder="Your name">
-            </div>
-            <div class="form-group">
-                <label>Phone *</label>
-                <input type="tel" id="userPhone" placeholder="+91 XXXXX XXXXX">
-            </div>
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" id="userEmail" placeholder="your@email.com">
-            </div>
-            <div class="form-group">
-                <label>Notes</label>
-                <textarea id="userNotes" rows="2" placeholder="Quantity, delivery location..."></textarea>
-            </div>
-            <button class="checkout-btn" onclick="submitEnquiry()">Send Enquiry via WhatsApp</button>
-        </div>
+<footer>
+  <span class="f-logo">Paperify</span>
+  <p>&copy; 2026 Paperify &nbsp;&middot;&nbsp; Premium Paper Packaging &nbsp;&middot;&nbsp; Vadodara, Gujarat</p>
+  <p>CEO: Jay Pancholi &nbsp;&middot;&nbsp; +91 79428 30171</p>
+</footer>
+
+<!-- ══ SCRIM + DRAWER ══ -->
+<div class="scrim" id="scrim" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="d-head">
+    <span class="d-title">Enquiry List</span>
+    <button class="d-close" onclick="closeCart()">
+      <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      Close
+    </button>
+  </div>
+  <div class="d-body" id="dBody"></div>
+  <div class="d-form">
+    <span class="d-form-label">Your Details</span>
+    <div class="form-2">
+      <input class="fi" type="text" id="fn" placeholder="Full name *">
+      <input class="fi" type="tel"  id="fp" placeholder="Phone *">
     </div>
+    <input class="fi mb7" type="email" id="fe" placeholder="Email address *">
+    <textarea class="fi" id="fnt" rows="2" placeholder="Notes — quantity, delivery info…"></textarea>
+    <button class="d-send" onclick="sendEnquiry()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>Send via WhatsApp</span>
+    </button>
+  </div>
+</div>
 
-    <script>
-        const products = [
-            { id: 1, name: '2kg Printed Butter Paper Bag', price: '₹170/Kg', category: 'butter', desc: 'Food-grade, custom printing available' },
-            { id: 2, name: '4kg Printed Butter Paper Bag', price: '₹180/Kg', category: 'butter', desc: 'Large capacity, premium quality' },
-            { id: 3, name: '1kg Printed Butter Paper Bag', price: '₹165/Kg', category: 'butter', desc: 'Compact, retail-friendly' },
-            { id: 4, name: '40 GSM Butter Paper Sheet', price: '₹92/Kg', category: 'butter', desc: 'Food-safe wrapping paper' },
-            { id: 5, name: 'Printed Butter Paper Sheet', price: '₹150/Kg', category: 'butter', desc: 'Custom branding available' },
-            { id: 6, name: 'Food Grade Butter Paper', price: '₹95/Kg', category: 'butter', desc: 'Certified food-safe' },
-            { id: 7, name: 'Plain Butter Paper Bag', price: '₹149/Kg', category: 'butter', desc: 'Versatile plain design' },
-            { id: 8, name: '10" Printed Carry Bag', price: '₹5/Piece', category: 'carry', desc: 'Medium retail size' },
-            { id: 9, name: '12" Printed Carry Bag', price: '₹8/Kg', category: 'carry', desc: 'Large shopping bag' },
-            { id: 10, name: '10" Plain Carry Bag', price: '₹5/Piece', category: 'carry', desc: 'Eco-friendly option' },
-            { id: 11, name: 'Customized Carry Bag', price: '₹7/Piece', category: 'carry', desc: 'Your logo & design' },
-            { id: 12, name: '2kg Medical Pharmacy Bag', price: '₹95/Kg', category: 'pharmacy', desc: 'Medical-grade certified' },
-            { id: 13, name: '4kg Medical Pharmacy Bag', price: '₹150/Kg', category: 'pharmacy', desc: 'Pharma compliance' },
-            { id: 14, name: 'Two Color Printing Machine', price: '₹8.5L/Unit', category: 'machines', desc: 'Industrial capacity' },
-            { id: 15, name: 'Four Color Printing Machine', price: '₹9.5L/Unit', category: 'machines', desc: 'Advanced printing' },
-            { id: 16, name: 'Paper Bag Making Machine', price: '₹6L/Unit', category: 'machines', desc: 'High-speed production' },
-            { id: 17, name: 'Paper Mailer Bag', price: '₹5/Piece', category: 'specialty', desc: 'E-commerce ready' },
-            { id: 18, name: 'SOS Paper Bag', price: '₹95/Kg', category: 'specialty', desc: 'Flat-bottom design' },
-            { id: 19, name: 'BBQ Foil Paper Bag', price: '₹280/Kg', category: 'specialty', desc: 'Heat-resistant' },
-            { id: 20, name: 'Paper Food Bag', price: 'Contact', category: 'specialty', desc: 'Custom food packaging' },
-            { id: 21, name: 'Paper Gift Bag', price: 'Contact', category: 'specialty', desc: 'Premium gifting' }
-        ];
+<div class="toast" id="toast"></div>
 
-        let cart = [];
-        let currentFilter = 'all';
+<!-- ══ SVG ICONS LIBRARY (hidden) ══ -->
+<svg style="display:none">
+  <symbol id="ico-paper" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="10" y="6" width="24" height="36" rx="2"/>
+    <polyline points="10,6 34,6 38,10 38,42 14,42 10,38"/>
+    <line x1="18" y1="18" x2="30" y2="18"/>
+    <line x1="18" y1="24" x2="30" y2="24"/>
+    <line x1="18" y1="30" x2="26" y2="30"/>
+  </symbol>
+  <symbol id="ico-bag" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 16h28l-4 24H14z"/>
+    <path d="M18 16c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+    <line x1="20" y1="24" x2="28" y2="24"/>
+    <line x1="24" y1="20" x2="24" y2="28"/>
+  </symbol>
+  <symbol id="ico-leaf" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 40c0-14 12-22 20-22-2 14-10 22-20 22z"/>
+    <path d="M24 40c0-14-12-22-20-22C6 32 14 40 24 40z"/>
+    <line x1="24" y1="40" x2="24" y2="20"/>
+  </symbol>
+  <symbol id="ico-pill" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="20" width="32" height="10" rx="5"/>
+    <line x1="24" y1="20" x2="24" y2="30"/>
+    <circle cx="24" cy="14" r="4"/>
+    <line x1="24" y1="30" x2="24" y2="38"/>
+  </symbol>
+  <symbol id="ico-gear" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="24" r="5"/>
+    <path d="M24 8v5M24 35v5M8 24h5M35 24h5M12.1 12.1l3.5 3.5M32.4 32.4l3.5 3.5M35.9 12.1l-3.5 3.5M15.6 32.4l-3.5 3.5"/>
+  </symbol>
+  <symbol id="ico-box" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="40,16 24,24 8,16"/>
+    <path d="M8 16l16-8 16 8v16l-16 8L8 32z"/>
+    <line x1="24" y1="24" x2="24" y2="40"/>
+  </symbol>
+  <symbol id="ico-tag" viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 6l10 2 20 20a3 3 0 010 4.2l-8.8 8.8a3 3 0 01-4.2 0L3 21z"/>
+    <circle cx="14" cy="14" r="2.5" fill="none"/>
+  </symbol>
+</svg>
 
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
-            
-            grid.innerHTML = filtered.map(p => `
-                <div class="product-card fade-in">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <div class="product-tag">${p.category}</div>
-                        <div class="product-name">${p.name}</div>
-                        <div class="product-desc">${p.desc}</div>
-                        <div class="product-footer">
-                            <div class="product-price">${p.price}</div>
-                            <button class="add-to-cart" onclick="addToCart(${p.id})">Add</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+<script>
+/* ══════════════════════════════════════════════════════
+   DATA
+══════════════════════════════════════════════════════ */
+const PRODUCTS = [
+  {id:1,  name:'2kg Printed Butter Paper Bag', price:'₹170/Kg',   cat:'butter',   icon:'ico-paper', desc:'Custom printing, food-grade certified'},
+  {id:2,  name:'4kg Printed Butter Paper Bag', price:'₹180/Kg',   cat:'butter',   icon:'ico-paper', desc:'Large capacity, premium quality'},
+  {id:3,  name:'1kg Printed Butter Paper Bag', price:'₹165/Kg',   cat:'butter',   icon:'ico-paper', desc:'Compact, retail-friendly design'},
+  {id:4,  name:'40 GSM Butter Paper Sheet',    price:'₹92/Kg',    cat:'butter',   icon:'ico-leaf',  desc:'Food-safe wrapping sheet'},
+  {id:5,  name:'Printed Butter Paper Sheet',   price:'₹150/Kg',   cat:'butter',   icon:'ico-leaf',  desc:'Custom branding available'},
+  {id:6,  name:'Food Grade Butter Paper',      price:'₹95/Kg',    cat:'butter',   icon:'ico-leaf',  desc:'Certified food-safe material'},
+  {id:7,  name:'Plain Butter Paper Bag',       price:'₹149/Kg',   cat:'butter',   icon:'ico-paper', desc:'Versatile plain design'},
+  {id:8,  name:'10″ Printed Carry Bag',        price:'₹5/Piece',  cat:'carry',    icon:'ico-bag',   desc:'Medium retail size, printed'},
+  {id:9,  name:'12″ Printed Carry Bag',        price:'₹8/Kg',     cat:'carry',    icon:'ico-bag',   desc:'Large shopping bag, printed'},
+  {id:10, name:'10″ Plain Carry Bag',          price:'₹5/Piece',  cat:'carry',    icon:'ico-bag',   desc:'Eco-friendly plain option'},
+  {id:11, name:'Customized Carry Bag',         price:'₹7/Piece',  cat:'carry',    icon:'ico-tag',   desc:'Your logo and design'},
+  {id:12, name:'2kg Medical Pharmacy Bag',     price:'₹95/Kg',    cat:'pharmacy', icon:'ico-pill',  desc:'Medical-grade certified'},
+  {id:13, name:'4kg Medical Pharmacy Bag',     price:'₹150/Kg',   cat:'pharmacy', icon:'ico-pill',  desc:'Pharma-compliant packaging'},
+  {id:14, name:'Two Colour Printing Machine',  price:'₹8.5L/Unit',cat:'machines', icon:'ico-gear',  desc:'Industrial capacity press'},
+  {id:15, name:'Four Colour Printing Machine', price:'₹9.5L/Unit',cat:'machines', icon:'ico-gear',  desc:'Advanced 4C printing'},
+  {id:16, name:'Paper Bag Making Machine',     price:'₹6L/Unit',  cat:'machines', icon:'ico-gear',  desc:'High-speed production unit'},
+  {id:17, name:'Paper Mailer Bag',             price:'₹5/Piece',  cat:'specialty',icon:'ico-box',   desc:'E-commerce ready mailer'},
+  {id:18, name:'SOS Paper Bag',                price:'₹95/Kg',    cat:'specialty',icon:'ico-box',   desc:'Flat-bottom design'},
+  {id:19, name:'BBQ Foil Paper Bag',           price:'₹280/Kg',   cat:'specialty',icon:'ico-bag',   desc:'Heat-resistant foil bag'},
+  {id:20, name:'Paper Food Bag',               price:'Contact',   cat:'specialty',icon:'ico-box',   desc:'Custom food packaging'},
+  {id:21, name:'Paper Gift Bag',               price:'Contact',   cat:'specialty',icon:'ico-tag',   desc:'Premium gifting solution'},
+];
 
-            observeElements();
-        }
+/* ══════════════════════════════════════════════════════
+   CURSOR
+══════════════════════════════════════════════════════ */
+const cd=document.getElementById('cd'), cr=document.getElementById('cr');
+let mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my;
 
-        function filterProducts(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            renderProducts();
-        }
+document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
+(function loop(){
+  rx += (mx-rx)*.14; ry += (my-ry)*.14;
+  cd.style.left=mx+'px'; cd.style.top=my+'px';
+  cr.style.left=rx+'px'; cr.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
 
-        function filterCategory(category) {
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-                const btn = Array.from(document.querySelectorAll('.filter-btn')).find(b => b.textContent.toLowerCase().includes(category));
-                if (btn) btn.click();
-            }, 500);
-        }
+function bindCursor(sel, cls='cur-grow'){
+  document.querySelectorAll(sel).forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add(cls));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove(cls));
+  });
+}
+bindCursor('a, button, .pc, .check-row, .num-block');
 
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            if (!cart.find(p => p.id === id)) {
-                cart.push(product);
-                updateCart();
-            }
-        }
+/* ══════════════════════════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════════════════════════ */
+const bar = document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.transform = `scaleX(${window.scrollY/h})`;
+},{passive:true});
 
-        function removeFromCart(id) {
-            cart = cart.filter(p => p.id !== id);
-            updateCart();
-        }
+/* ══════════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════════ */
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  navEl.classList.toggle('scrolled', window.scrollY>80);
+},{passive:true});
 
-        function updateCart() {
-            document.getElementById('cartCount').textContent = cart.length;
-            const container = document.getElementById('cartItems');
-            
-            if (cart.length === 0) {
-                container.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p></div>';
-            } else {
-                container.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">${item.price}</div>
-                        </div>
-                        <button class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
-                    </div>
-                `).join('');
-            }
-        }
+/* ══════════════════════════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════════════════════════ */
+const hbg=document.getElementById('hbg'), mob=document.getElementById('mobMenu');
+let mobOpen=false;
+function toggleMob(){
+  mobOpen=!mobOpen;
+  hbg.classList.toggle('open',mobOpen);
+  mob.classList.toggle('open',mobOpen);
+}
+function closeMob(){ mobOpen=false; hbg.classList.remove('open'); mob.classList.remove('open'); }
 
-        function toggleCart() {
-            document.getElementById('cartPanel').classList.toggle('open');
-        }
+/* ══════════════════════════════════════════════════════
+   PARALLAX
+══════════════════════════════════════════════════════ */
+const hwm=document.getElementById('hwm');
+const aVis=document.getElementById('aVisNum');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(hwm) hwm.style.transform=`translateY(${y*.12}px)`;
+  if(aVis){
+    const rect=aVis.parentElement.getBoundingClientRect();
+    aVis.style.transform=`translateY(${rect.top*.06}px)`;
+  }
+},{passive:true});
 
-        function submitEnquiry() {
-            const name = document.getElementById('userName').value;
-            const phone = document.getElementById('userPhone').value;
-            const email = document.getElementById('userEmail').value;
-            const notes = document.getElementById('userNotes').value;
+/* ══════════════════════════════════════════════════════
+   MARQUEE
+══════════════════════════════════════════════════════ */
+(()=>{
+  const items=['Butter Paper','Carry Bags','Pharmacy Bags','Paper Mailers','SOS Bags','BBQ Foil Bags','Gift Bags','Custom Print','Food Grade','Wholesale'];
+  const track=document.getElementById('mq');
+  [0,1].forEach(()=> items.forEach(t=>{
+    const d=document.createElement('div'); d.className='m-item';
+    d.innerHTML=`<span class="m-sep"></span>${t}`;
+    track.appendChild(d);
+  }));
+})();
 
-            if (!name || !phone || !email) {
-                alert('Please fill required fields');
-                return;
-            }
+/* ══════════════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════════════ */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); } });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-            if (cart.length === 0) {
-                alert('Cart is empty');
-                return;
-            }
+/* ══════════════════════════════════════════════════════
+   COUNTERS
+══════════════════════════════════════════════════════ */
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target; const to=parseInt(el.dataset.to);
+    if(!to||el._done) return; el._done=true; cntObs.unobserve(el);
+    let v=0; const step=Math.max(1,Math.ceil(to/70));
+    const t=setInterval(()=>{
+      v=Math.min(v+step,to);
+      el.textContent=v+'+';
+      if(v>=to) clearInterval(t);
+    },22);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-to]').forEach(el=>cntObs.observe(el));
 
-            const items = cart.map(p => `• ${p.name} (${p.price})`).join('\n');
-            const message = `*Paperify Enquiry*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nProducts:\n${items}\n\nNotes: ${notes || 'None'}`;
-            
-            window.open(`https://wa.me/917942830171?text=${encodeURIComponent(message)}`, '_blank');
-            
-            cart = [];
-            updateCart();
-            toggleCart();
-        }
+/* ══════════════════════════════════════════════════════
+   PRODUCTS
+══════════════════════════════════════════════════════ */
+let activeFilter='all', cart=[];
 
-        // Scroll animations
-        function observeElements() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
+function renderProducts(){
+  const list = activeFilter==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeFilter);
+  const g=document.getElementById('pg');
+  g.innerHTML=list.map((p,i)=>`
+    <div class="pc" style="animation:riseIn .5s ${i*.04}s both">
+      <div class="pc-visual">
+        <span class="pc-label">${p.cat}</span>
+        <svg><use href="#${p.icon}"/></svg>
+      </div>
+      <div class="pc-body">
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-desc">${p.desc}</div>
+        <div class="pc-foot">
+          <span class="pc-price">${p.price}</span>
+          <button class="pc-add${cart.find(c=>c.id===p.id)?' added':''}"
+            id="pa${p.id}" onclick="addToCart(${p.id})">
+            <svg class="pc-add-icon" width="14" height="14" viewBox="0 0 14 14" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round">
+              ${cart.find(c=>c.id===p.id)
+                ? '<polyline points="2,7 5.5,10.5 12,4"/>'
+                : '<line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/>'}
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  bindCursor('.pc, .pc-add');
+}
 
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        }
+function doFilter(cat, btn){
+  activeFilter=cat;
+  document.querySelectorAll('.fp').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                document.getElementById('nav').classList.add('scrolled');
-            } else {
-                document.getElementById('nav').classList.remove('scrolled');
-            }
-        });
+/* ══════════════════════════════════════════════════════
+   CART
+══════════════════════════════════════════════════════ */
+function addToCart(id){
+  if(cart.find(c=>c.id===id)) return;
+  cart.push(PRODUCTS.find(p=>p.id===id));
+  updateBubble(); renderProducts(); renderDrawer();
+  showToast('Added to enquiry list');
+}
 
-        // Initialize
-        renderProducts();
-        updateCart();
-        observeElements();
-    </script>
+function removeFromCart(id){
+  cart=cart.filter(c=>c.id!==id);
+  updateBubble(); renderProducts(); renderDrawer();
+}
+
+function updateBubble(){
+  document.getElementById('nb').textContent=cart.length;
+}
+
+function renderDrawer(){
+  const el=document.getElementById('dBody');
+  if(!cart.length){
+    el.innerHTML=`<div class="d-empty">
+      <div class="d-empty-icon">
+        <svg viewBox="0 0 48 48" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h28l-4 24H14z"/><path d="M18 16c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      </div>
+      <p>Your enquiry list is empty.<br>Browse the catalogue and<br>add products to get started.</p>
+    </div>`;
+    return;
+  }
+  el.innerHTML=cart.map(p=>`
+    <div class="d-item">
+      <div class="d-item-box">
+        <svg><use href="#${p.icon}"/></svg>
+      </div>
+      <div class="d-item-info">
+        <div class="d-item-name">${p.name}</div>
+        <div class="d-item-price">${p.price}</div>
+      </div>
+      <button class="d-rm" onclick="removeFromCart(${p.id})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function openCart(){ document.getElementById('drawer').classList.add('open'); document.getElementById('scrim').classList.add('open'); renderDrawer(); }
+function closeCart(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('scrim').classList.remove('open'); }
+
+function sendEnquiry(){
+  const n=document.getElementById('fn').value.trim();
+  const ph=document.getElementById('fp').value.trim();
+  const em=document.getElementById('fe').value.trim();
+  const nt=document.getElementById('fnt').value.trim();
+  if(!n||!ph||!em){ showToast('Please fill all required fields'); return; }
+  if(!cart.length){ showToast('Add at least one product first'); return; }
+  const lines=cart.map(p=>`• ${p.name} (${p.price})`).join('\n');
+  const msg=`*Paperify Enquiry*\n\nName: ${n}\nPhone: ${ph}\nEmail: ${em}\n\nProducts:\n${lines}\n\nNotes: ${nt||'None'}`;
+  window.open(`https://wa.me/917942830171?text=${encodeURIComponent(msg)}`,'_blank');
+  cart=[]; updateBubble(); renderProducts(); closeCart(); showToast('Enquiry sent!');
+}
+
+/* ══════════════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════════════ */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+/* ══════════════════════════════════════════════════════
+   MAGNETIC BUTTONS
+══════════════════════════════════════════════════════ */
+document.querySelectorAll('.btn-solid, .nav-enquiry, .wa-btn, .d-send').forEach(btn=>{
+  btn.addEventListener('mousemove', e=>{
+    const r=btn.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.25;
+    const y=(e.clientY-r.top-r.height/2)*.25;
+    btn.style.transform=`translate(${x}px,${y}px)`;
+  });
+  btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
+});
+
+/* ══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════ */
+renderProducts();
+renderDrawer();
+</script>
 </body>
 </html>
