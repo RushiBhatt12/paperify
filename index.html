@@ -1063,11 +1063,12 @@ textarea.fi { resize:none; }
     </div>
     <div class="filter-strip" id="filters">
       <button class="fp active" onclick="doFilter('all',this)">All</button>
-      <button class="fp" onclick="doFilter('butter',this)">Butter Paper</button>
-      <button class="fp" onclick="doFilter('carry',this)">Carry Bags</button>
-      <button class="fp" onclick="doFilter('pharmacy',this)">Pharmacy</button>
-      <button class="fp" onclick="doFilter('machines',this)">Machines</button>
-      <button class="fp" onclick="doFilter('specialty',this)">Specialty</button>
+     <!--  <button class="fp" onclick="doFilter('butter',this)">Butter Paper</button> -->
+     <!-- <button class="fp" onclick="doFilter('carry',this)">Carry Bags</button> -->
+     <!--  <button class="fp" onclick="doFilter('Butter Paper Sheet',this)">Butter Paper Sheet</button> -->
+     <!-- <button class="fp" onclick="doFilter('Sos Type Bags',this)">Sos Type Bags</button> -->
+     <!-- <button class="fp" onclick="doFilter('V bottom Bag',this)">V bottom Bag</button> -->
+     <!-- <button class="fp" onclick="doFilter('V bottom Bag',this)">V bottom Bag</button> -->
     </div>
   </div>
   <div class="prod-grid" id="pg"></div>
@@ -1187,27 +1188,27 @@ textarea.fi { resize:none; }
    DATA
 ══════════════════════════════════════════════════════ */
 const PRODUCTS = [
-  {id:1,  name:'Paper Carry Bag', price:'₹170/Kg',   cat:'butter',   icon:'ico-paper', desc:'Custom printing, food-grade certified'},
-  {id:2,  name:'Butter Paper Bag', price:'₹180/Kg',   cat:'butter',   icon:'ico-paper', desc:'Large capacity, premium quality'},
-  {id:3,  name:'Sos Type Bag', price:'₹165/Kg',   cat:'butter',   icon:'ico-paper', desc:'Compact, retail-friendly design'},
-  {id:4,  name:'Food Grade Paper Bag',    price:'₹92/Kg',    cat:'butter',   icon:'ico-leaf',  desc:'Food-safe wrapping sheet'},
-  {id:5,  name:'Butter Paper Sheet',   price:'₹150/Kg',   cat:'butter',   icon:'ico-leaf',  desc:'Custom branding available'},
-  //{id:6,  name:'Food Grade Butter Paper',      price:'₹95/Kg',    cat:'butter',   icon:'ico-leaf',  desc:'Certified food-safe material'},
-  //{id:7,  name:'Plain Butter Paper Bag',       price:'₹149/Kg',   cat:'butter',   icon:'ico-paper', desc:'Versatile plain design'},
-  //{id:8,  name:'10″ Printed Carry Bag',        price:'₹5/Piece',  cat:'carry',    icon:'ico-bag',   desc:'Medium retail size, printed'},
-  //{id:9,  name:'12″ Printed Carry Bag',        price:'₹8/Kg',     cat:'carry',    icon:'ico-bag',   desc:'Large shopping bag, printed'},
+  {id:1,  name:'Paper Carry Bag', price:'₹5-20/Piece',   cat:'butter',   icon:'ico-paper', desc:'Custom printing, food-grade certified'},
+  {id:2,  name:'Butter Paper Bag', price:'₹155/Kg',   cat:'butter',   icon:'ico-paper', desc:'Large capacity, premium quality'},
+  {id:3,  name:'Sos Type Bag', price:'₹100/Kg',   cat:'butter',   icon:'ico-paper', desc:'Compact, retail-friendly design'},
+  {id:4,  name:'Food Grade Paper Bag',    price:'₹100/Kg',    cat:'butter',   icon:'ico-leaf',  desc:'Food-safe wrapping sheet'},
+  {id:5,  name:'Butter Paper Sheet',   price:'₹145/Kg',   cat:'butter',   icon:'ico-leaf',  desc:'Custom branding available'},
+  {id:6,  name:'MG Craft Bag',      price:'₹85/Kg',    cat:'butter',   icon:'ico-leaf',  desc:'Certified food-safe material'},
+  {id:7,  name:'Cake Bag',       price:'₹8-20/Piece',   cat:'butter',   icon:'ico-paper', desc:'Versatile plain design'},
+  {id:8,  name:'Barbeque Foil Bag',        price:'₹275/kg',  cat:'carry',    icon:'ico-bag',   desc:'Medium retail size, printed'},
+  {id:9,  name:'Customized Paper Bag',        price:'₹8-20/Piece',     cat:'carry',    icon:'ico-bag',   desc:'Large shopping bag, printed'},
   //{id:10, name:'10″ Plain Carry Bag',          price:'₹5/Piece',  cat:'carry',    icon:'ico-bag',   desc:'Eco-friendly plain option'},
   //{id:11, name:'Customized Carry Bag',         price:'₹7/Piece',  cat:'carry',    icon:'ico-tag',   desc:'Your logo and design'},
   //{id:12, name:'2kg Medical Pharmacy Bag',     price:'₹95/Kg',    cat:'pharmacy', icon:'ico-pill',  desc:'Medical-grade certified'},
   //{id:13, name:'4kg Medical Pharmacy Bag',     price:'₹150/Kg',   cat:'pharmacy', icon:'ico-pill',  desc:'Pharma-compliant packaging'},
-  //{id:14, name:'Two Colour Printing Machine',  price:'₹8.5L/Unit',cat:'machines', icon:'ico-gear',  desc:'Industrial capacity press'},
-  //{id:15, name:'Four Colour Printing Machine', price:'₹9.5L/Unit',cat:'machines', icon:'ico-gear',  desc:'Advanced 4C printing'},
-  //{id:16, name:'Paper Bag Making Machine',     price:'₹6L/Unit',  cat:'machines', icon:'ico-gear',  desc:'High-speed production unit'},
-  //{id:17, name:'Paper Mailer Bag',             price:'₹5/Piece',  cat:'specialty',icon:'ico-box',   desc:'E-commerce ready mailer'},
-  //{id:18, name:'SOS Paper Bag',                price:'₹95/Kg',    cat:'specialty',icon:'ico-box',   desc:'Flat-bottom design'},
-  //{id:19, name:'BBQ Foil Paper Bag',           price:'₹280/Kg',   cat:'specialty',icon:'ico-bag',   desc:'Heat-resistant foil bag'},
-  //{id:20, name:'Paper Food Bag',               price:'Contact',   cat:'specialty',icon:'ico-box',   desc:'Custom food packaging'},
-  //{id:21, name:'Paper Gift Bag',               price:'Contact',   cat:'specialty',icon:'ico-tag',   desc:'Premium gifting solution'},
+  //{id:14, name:'Two Colour Printing Sos Type Bag',  price:'₹8.5L/Unit',cat:'Sos Type Bags', icon:'ico-gear',  desc:'Industrial capacity press'},
+  //{id:15, name:'Four Colour Printing Sos Type Bag', price:'₹9.5L/Unit',cat:'Sos Type Bags', icon:'ico-gear',  desc:'Advanced 4C printing'},
+  //{id:16, name:'Paper Bag Making Sos Type Bag',     price:'₹6L/Unit',  cat:'Sos Type Bags', icon:'ico-gear',  desc:'High-speed production unit'},
+  //{id:17, name:'Paper Mailer Bag',             price:'₹5/Piece',  cat:'V bottom Bag',icon:'ico-box',   desc:'E-commerce ready mailer'},
+  //{id:18, name:'SOS Paper Bag',                price:'₹95/Kg',    cat:'V bottom Bag',icon:'ico-box',   desc:'Flat-bottom design'},
+  //{id:19, name:'BBQ Foil Paper Bag',           price:'₹280/Kg',   cat:'V bottom Bag',icon:'ico-bag',   desc:'Heat-resistant foil bag'},
+  //{id:20, name:'Paper Food Bag',               price:'Contact',   cat:'V bottom Bag',icon:'ico-box',   desc:'Custom food packaging'},
+  //{id:21, name:'Paper Gift Bag',               price:'Contact',   cat:'V bottom Bag',icon:'ico-tag',   desc:'Premium gifting solution'},
 ];
 
 /* ══════════════════════════════════════════════════════
@@ -1279,7 +1280,7 @@ window.addEventListener('scroll',()=>{
    MARQUEE
 ══════════════════════════════════════════════════════ */
 (()=>{
-  const items=['Butter Paper','Carry Bags','Pharmacy Bags','Paper Mailers','SOS Bags','BBQ Foil Bags','Gift Bags','Custom Print','Food Grade','Wholesale'];
+  const items=['Butter Paper','Carry Bags','Butter Paper Sheet ','Paper Mailers','SOS Bags','BBQ Foil Bags','Gift Bags','Custom Print','Food Grade','Wholesale'];
   const track=document.getElementById('mq');
   [0,1].forEach(()=> items.forEach(t=>{
     const d=document.createElement('div'); d.className='m-item';
