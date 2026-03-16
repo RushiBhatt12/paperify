@@ -1187,60 +1187,7 @@ textarea.fi { resize:none; }
   to   { transform:scaleY(1); }
 }
 
-/* ════════════════════════════════════════════════
-   SECTION RULER NAV — flush right edge
-════════════════════════════════════════════════ */
-.s-ruler {
-  position:fixed; right:0; top:50%;
-  transform:translateY(-50%);
-  z-index:700;
-  display:flex; flex-direction:column;
-  gap:2px;
-  opacity:0; transition:opacity .5s var(--ease);
-  /* no width — contents determine it */
-}
-.s-ruler.visible { opacity:1; }
 
-.s-tick {
-  display:flex; align-items:center;
-  justify-content:flex-end;
-  height:36px;
-  background:none; border:none; padding:0;
-  cursor:none; position:relative;
-  overflow:visible;
-}
-
-/* label — only appears on hover, flies in from right */
-.s-tick-label {
-  font-family:var(--f-sans);
-  font-size:.55rem; font-weight:400; letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--c-ink60); white-space:nowrap;
-  position:absolute; right:20px;
-  opacity:0; transform:translateX(6px);
-  transition:opacity .22s var(--ease), transform .22s var(--ease);
-  pointer-events:none;
-  background:var(--c-bg);
-  padding:.2rem .6rem;
-  border:1px solid var(--c-ink08);
-}
-.s-tick:hover .s-tick-label { opacity:1; transform:translateX(0); }
-
-/* the tick bar — flush to right edge, no number */
-.s-tick-bar {
-  display:block;
-  height:1px;
-  width:8px;
-  background:var(--c-ink08);
-  transition:width .3s var(--ease), background .3s;
-  flex-shrink:0;
-  position:relative; z-index:1;
-}
-.s-tick.active .s-tick-bar { width:24px; background:var(--c-gold); }
-.s-tick:hover .s-tick-bar   { width:16px; background:var(--c-ink30); }
-.s-tick.active:hover .s-tick-bar { background:var(--c-gold); }
-
-@media(max-width:960px){ .s-ruler { display:none; } }
 
 /* ════════════════════════════════════════════════
    FIXED CORNER ACTIONS — WA pill + scroll top
@@ -1572,15 +1519,7 @@ textarea.fi { resize:none; }
   <span class="intro-sub">Premium Paper Packaging</span>
 </div>
 
-<!-- ══ SECTION RULER NAV ══ -->
-<nav class="s-ruler" id="sRuler" aria-label="Section navigation">
-  <button class="s-tick active" data-target="hero"><span class="s-tick-label">Top</span><span class="s-tick-bar"></span></button>
-  <button class="s-tick" data-target="about-sec"><span class="s-tick-label">About</span><span class="s-tick-bar"></span></button>
-  <button class="s-tick" data-target="stats-sec"><span class="s-tick-label">Stats</span><span class="s-tick-bar"></span></button>
-  <button class="s-tick" data-target="products-sec"><span class="s-tick-label">Products</span><span class="s-tick-bar"></span></button>
-  <button class="s-tick" data-target="gallery-sec"><span class="s-tick-label">Gallery</span><span class="s-tick-bar"></span></button>
-  <button class="s-tick" data-target="contact-sec"><span class="s-tick-label">Contact</span><span class="s-tick-bar"></span></button>
-</nav>
+
 
 <!-- ══ WHATSAPP PILL — bottom left ══ -->
 <a class="wa-pill" id="waPill" href="https://wa.me/919662728203" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -2335,38 +2274,22 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb({target:d
 })();
 
 /* ══════════════════════════════════════════════════════
-   SECTION RULER + ACTIVE NAV
+   ACTIVE NAV HIGHLIGHT
 ══════════════════════════════════════════════════════ */
-(function initSectionNav(){
-  const ticks  = document.querySelectorAll('.s-tick');
-  const navAs  = document.querySelectorAll('.nav-links a');
-  const ruler  = document.getElementById('sRuler');
+(function initActiveNav(){
+  const navAs = document.querySelectorAll('.nav-links a');
   const SECTIONS = ['hero','about-sec','stats-sec','products-sec','gallery-sec','contact-sec'];
-
-  function setActive(id){
-    ticks.forEach((t,i)=> t.classList.toggle('active', SECTIONS[i]===id));
-    navAs.forEach(a=>{
-      const href = a.getAttribute('href').replace('#','');
-      a.classList.toggle('active', href===id);
-    });
-  }
-
-  ticks.forEach(t=>{
-    t.addEventListener('click',()=>{
-      const el = document.getElementById(t.dataset.target);
-      if(el) el.scrollIntoView({behavior:'smooth'});
-    });
-  });
-
   const secEls = SECTIONS.map(id=> document.getElementById(id)).filter(Boolean);
   const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting) setActive(e.target.id); });
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      navAs.forEach(a=>{
+        const href = a.getAttribute('href').replace('#','');
+        a.classList.toggle('active', href===e.target.id);
+      });
+    });
   },{threshold:0.2, rootMargin:'-10% 0px -60% 0px'});
   secEls.forEach(el=> obs.observe(el));
-
-  window.addEventListener('scroll',()=>{
-    ruler.classList.toggle('visible', window.scrollY > 200);
-  },{passive:true});
 })();
 
 /* ══════════════════════════════════════════════════════
