@@ -681,7 +681,7 @@ nav.scrolled {
 .prod-grid .pc:nth-child(4n) { border-right:none; }
 
 .pc-visual {
-  height:180px; position:relative; overflow:hidden;
+  height:240px; position:relative; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
   background:var(--c-bg2);
   border-bottom:1px solid var(--c-ink08);
@@ -698,11 +698,11 @@ nav.scrolled {
 /* Product image (replaces icon when img URL is set on a product) */
 .pc-visual img {
   width:100%; height:100%;
-  object-fit:cover; object-position:center;
+  object-fit:contain; object-position:center;
   display:block;
   transition:transform .6s var(--ease), filter .4s var(--ease);
 }
-.pc:hover .pc-visual img { transform:scale(1.06); filter:brightness(.93); }
+.pc:hover .pc-visual img { transform:scale(1.04); filter:brightness(.93); }
 
 /* Drawer thumbnail image */
 .d-item-box img {
@@ -1502,6 +1502,288 @@ textarea.fi { resize:none; }
   40%{ background:var(--c-gold); transform:scale(1.4); }
 }
 @media(max-width:600px){ .swipe-hint { display:flex; } }
+
+/* ══ HERO TYPED ══ */
+.hero-typed {
+  display:inline-block;
+  border-right:2px solid var(--c-gold);
+  padding-right:2px;
+  animation:blink .75s step-end infinite;
+}
+@keyframes blink{0%,100%{border-color:var(--c-gold)}50%{border-color:transparent}}
+
+/* ══ PRODUCT SEARCH ══ */
+.prod-search-wrap{
+  position:relative;
+  margin-bottom:2rem;
+  padding:0 0 0 2.8rem;
+  border-bottom:1px solid var(--c-ink08);
+  display:flex; align-items:center;
+  transition:border-color .3s;
+}
+.prod-search-wrap:focus-within{ border-color:var(--c-gold); }
+.prod-search-ico{
+  position:absolute; left:.8rem;
+  color:var(--c-ink30); pointer-events:none;
+  transition:color .3s;
+}
+.prod-search-wrap:focus-within .prod-search-ico{ color:var(--c-gold); }
+.prod-search{
+  width:100%; padding:.95rem .8rem .95rem 0;
+  font-family:var(--f-sans); font-size:.88rem; font-weight:300;
+  color:var(--c-ink); background:transparent;
+  border:none; outline:none; cursor:text;
+}
+.prod-search::placeholder{ color:var(--c-ink30); }
+
+/* ══ CARD CAROUSEL ══ */
+.pc-car{
+  position:relative; width:100%; height:100%;
+  overflow:hidden;
+}
+.pc-car-track{
+  display:flex; height:100%;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.pc-car-track img{
+  flex:0 0 100%; width:100%; height:100%;
+  object-fit:contain; object-position:center; display:block;
+}
+.pc-car-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:26px; height:26px; border-radius:50%;
+  background:rgba(248,244,238,.88); border:1px solid var(--c-ink08);
+  display:flex; align-items:center; justify-content:center;
+  cursor:none; z-index:5;
+  opacity:0; transition:opacity .25s, background .25s;
+}
+.pc:hover .pc-car-btn{ opacity:1; }
+.pc-car-btn:hover{ background:#fff; }
+.pc-car-btn.prev{ left:.45rem; }
+.pc-car-btn.next{ right:.45rem; }
+.pc-car-dots{
+  position:absolute; bottom:.5rem; left:50%; transform:translateX(-50%);
+  display:flex; gap:.35rem; z-index:5;
+}
+.pc-car-dots span{
+  width:5px; height:5px; border-radius:50%;
+  background:rgba(26,21,16,.22); cursor:none;
+  transition:background .25s, transform .25s;
+}
+.pc-car-dots span.on{ background:var(--c-gold); transform:scale(1.4); }
+
+/* ══ 3-D TILT ══ */
+.pc{ transform-style:preserve-3d; will-change:transform; transition:transform .08s linear, background .4s var(--ease); }
+
+/* ══ CONFETTI ══ */
+.confetti-p{
+  position:fixed; pointer-events:none; z-index:9997;
+  border-radius:2px;
+  animation:cfall linear forwards;
+}
+@keyframes cfall{
+  0%  { opacity:1; transform:translateY(0) rotate(0deg) scale(1); }
+  80% { opacity:1; }
+  100%{ opacity:0; transform:translateY(200px) rotate(540deg) scale(.3); }
+}
+
+/* ══ RIPPLE ══ */
+.rpl{
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,.3);
+  transform:scale(0);
+  animation:rplOut .55s linear forwards;
+  pointer-events:none;
+}
+@keyframes rplOut{ to{ transform:scale(4); opacity:0; } }
+
+/* ══ BACK TO TOP ══ */
+#btt{
+  position:fixed; bottom:1.8rem; right:1.8rem;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--c-ink); border:none; cursor:none;
+  display:flex; align-items:center; justify-content:center;
+  z-index:900; opacity:0; transform:translateY(10px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease), background .3s;
+  pointer-events:none;
+}
+#btt.on{ opacity:1; transform:translateY(0); pointer-events:all; }
+#btt:hover{ background:var(--c-gold); }
+#btt svg{ width:14px; height:14px; stroke:#fff; stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ══ FAQ ══ */
+.faq-sec{
+  padding:8rem 4rem;
+  border-top:1px solid var(--c-ink08);
+}
+.faq-inner{ max-width:740px; margin:0 auto; }
+.faq-item{ border-bottom:1px solid var(--c-ink08); }
+.faq-q{
+  width:100%; background:none; border:none; cursor:none;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.5rem 0; gap:1.5rem; text-align:left;
+}
+.faq-q-text{
+  font-family:var(--f-serif);
+  font-size:1.05rem; font-weight:400;
+  color:var(--c-ink); line-height:1.3;
+}
+.faq-ico{
+  width:26px; height:26px; flex-shrink:0; border-radius:50%;
+  border:1px solid var(--c-ink08);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .35s var(--ease), background .3s, border-color .3s;
+  color:var(--c-ink);
+}
+.faq-item.open .faq-ico{ transform:rotate(45deg); background:var(--c-gold); border-color:var(--c-gold); color:#fff; }
+.faq-ans{
+  max-height:0; overflow:hidden;
+  transition:max-height .4s var(--ease);
+}
+.faq-ans-in{
+  padding-bottom:1.4rem;
+  font-size:.88rem; font-weight:300;
+  color:var(--c-ink60); line-height:1.85;
+}
+.faq-item.open .faq-ans{ max-height:200px; }
+
+/* ══ QUICK-VIEW ══ */
+.qv-ov{
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(26,21,16,.6);
+  backdrop-filter:blur(6px);
+  opacity:0; pointer-events:none;
+  transition:opacity .35s var(--ease);
+  display:flex; align-items:center; justify-content:center;
+  padding:1rem;
+}
+.qv-ov.on{ opacity:1; pointer-events:all; }
+.qv-box{
+  background:var(--c-white);
+  width:min(860px,96vw); max-height:90vh;
+  display:grid; grid-template-columns:1fr 1fr;
+  position:relative; overflow:hidden;
+  transform:scale(.95) translateY(20px);
+  transition:transform .4s var(--ease);
+  box-shadow:0 30px 70px rgba(26,21,16,.2);
+}
+.qv-ov.on .qv-box{ transform:scale(1) translateY(0); }
+.qv-x{
+  position:absolute; top:.9rem; right:.9rem;
+  width:34px; height:34px; border-radius:50%;
+  background:var(--c-ink08); border:none; cursor:none;
+  font-size:1.25rem; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--c-ink); z-index:10;
+  transition:background .3s, transform .35s var(--ease), color .3s;
+}
+.qv-x:hover{ background:var(--c-ink); color:#fff; transform:rotate(90deg); }
+.qv-left{
+  background:var(--c-bg2);
+  position:relative; overflow:hidden;
+  min-height:360px; display:flex; flex-direction:column;
+}
+.qv-img-track{
+  display:flex; flex:1;
+  transition:transform .45s var(--ease);
+}
+.qv-img-track img{
+  flex:0 0 100%; width:100%; height:100%;
+  object-fit:contain; object-position:center;
+  display:block;
+}
+.qv-nav-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:34px; height:34px; border-radius:50%;
+  background:rgba(248,244,238,.9); border:1px solid var(--c-ink08);
+  display:flex; align-items:center; justify-content:center;
+  cursor:none; z-index:5; transition:background .25s;
+}
+.qv-nav-btn:hover{ background:#fff; }
+.qv-nav-btn.prev{ left:.7rem; }
+.qv-nav-btn.next{ right:.7rem; }
+.qv-nav-btn svg{ width:11px; height:11px; stroke:var(--c-ink); stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.qv-thumbs{
+  display:flex; gap:.5rem; padding:.65rem;
+  background:var(--c-bg); border-top:1px solid var(--c-ink08);
+  overflow-x:auto;
+}
+.qv-thumb{
+  width:48px; height:48px; flex-shrink:0;
+  border:2px solid transparent; overflow:hidden; cursor:none;
+  transition:border-color .25s;
+}
+.qv-thumb.on{ border-color:var(--c-gold); }
+.qv-thumb img{ width:100%; height:100%; object-fit:contain; display:block; }
+.qv-right{
+  padding:2rem 1.8rem 1.8rem;
+  display:flex; flex-direction:column;
+  overflow-y:auto; max-height:90vh;
+}
+.qv-cat{
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--c-gold); margin-bottom:.5rem;
+}
+.qv-name{
+  font-family:var(--f-serif);
+  font-size:1.8rem; font-weight:400;
+  line-height:1.15; letter-spacing:-.02em;
+  color:var(--c-ink); margin-bottom:.8rem;
+}
+.qv-price{
+  font-family:var(--f-serif);
+  font-size:1.25rem; color:var(--c-ink);
+  margin-bottom:1.2rem;
+}
+.qv-rule{ width:36px; height:1px; background:var(--c-ink30); margin-bottom:1.2rem; }
+.qv-desc{
+  font-size:.88rem; font-weight:300;
+  color:var(--c-ink60); line-height:1.85;
+  flex:1; margin-bottom:1.5rem;
+}
+.qv-tags{
+  display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.5rem;
+}
+.qv-tag{
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--c-ink60); border:1px solid var(--c-ink08); padding:.3rem .7rem;
+}
+.qv-add-btn{
+  font-family:var(--f-sans);
+  font-size:.75rem; font-weight:400;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:#fff; background:var(--c-ink);
+  border:1px solid var(--c-ink);
+  padding:1rem 1.5rem; cursor:none;
+  display:flex; align-items:center; justify-content:center; gap:.7rem;
+  position:relative; overflow:hidden;
+  transition:border-color .35s;
+  width:100%;
+}
+.qv-add-btn::before{
+  content:''; position:absolute; inset:0;
+  background:var(--c-gold); transform:translateX(-102%);
+  transition:transform .4s var(--ease);
+}
+.qv-add-btn:hover::before{ transform:translateX(0); }
+.qv-add-btn span,.qv-add-btn svg{ position:relative; z-index:1; }
+.qv-add-btn.added{ background:var(--c-gold); border-color:var(--c-gold); }
+.qv-add-btn.added::before{ transform:translateX(0); }
+
+/* ══ RESPONSIVE ADDITIONS ══ */
+@media(max-width:900px){
+  .qv-box{ grid-template-columns:1fr; overflow-y:auto; }
+  .qv-left{ min-height:240px; }
+  .qv-right{ max-height:none; }
+}
+@media(max-width:640px){
+  .faq-sec{ padding:5rem 1.5rem; }
+  #btt{ bottom:1.2rem; right:1.2rem; width:40px; height:40px; }
+  .prod-search-wrap{ margin:0 0 1.5rem; }
+}
+
 </style>
 </head>
 <body>
@@ -1535,6 +1817,7 @@ textarea.fi { resize:none; }
 </button>
 
 <!-- CURSOR -->
+<button id="btt" aria-label="Back to top"><svg viewBox="0 0 14 14"><polyline points="2,10 7,4 12,10"/></svg></button>
 <div id="cd"></div>
 <div id="cr"></div>
 
@@ -1547,7 +1830,6 @@ textarea.fi { resize:none; }
   <div class="nav-links">
     <a href="#about-sec">About</a>
     <a href="#products-sec">Products</a>
-    <a href="#gallery-sec">Gallery</a>
     <a href="#contact-sec">Contact</a>
   </div>
   <div class="nav-right">
@@ -1565,7 +1847,6 @@ textarea.fi { resize:none; }
 <div class="mob-menu" id="mobMenu">
   <a href="#about-sec"    onclick="closeMob()">About</a>
   <a href="#products-sec" onclick="closeMob()">Products</a>
-  <a href="#gallery-sec"  onclick="closeMob()">Gallery</a>
   <a href="#contact-sec"  onclick="closeMob()">Contact</a>
   <a href="#"             onclick="openCart();closeMob()">Enquiry</a>
 </div>
@@ -1586,7 +1867,7 @@ textarea.fi { resize:none; }
     </div>
     <h1 class="hero-h1">
       <span class="clip"><span>Packaging</span></span>
-      <span class="clip"><span>with <em>purpose.</em></span></span>
+      <span class="clip"><span>for <em id="heroTyped" class="hero-typed">bakeries.</em></span></span>
       <span class="clip"><span>Made in India.</span></span>
     </h1>
   </div>
@@ -1613,14 +1894,11 @@ textarea.fi { resize:none; }
 <!-- ══ ABOUT ══ -->
 <div class="about" id="about-sec">
   <div class="about-visual" id="aboutVisual">
-    <!--
-      TO SHOW A PHOTO HERE:
-      1. Uncomment the <img> tag below and set src to your image path.
-      2. The JS will add the 'has-photo' class automatically when the image loads.
+   
 
       <img id="aboutPhoto" class="about-vis-photo"
            src="images/factory.jpg" alt="Paperify factory">
-    -->
+    
     <div class="about-vis-num" id="aVisNum">8</div>
     <div class="about-vis-caption">
       <span>Est. 2016 &middot; Vadodara, Gujarat</span>
@@ -1694,6 +1972,10 @@ textarea.fi { resize:none; }
      <!-- <button class="fp" onclick="doFilter('V bottom Bag',this)">V bottom Bag</button> -->
     </div>
   </div>
+  <div class="prod-search-wrap">
+    <svg class="prod-search-ico" viewBox="0 0 18 18" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5.5"/><line x1="12" y1="12" x2="16.5" y2="16.5"/></svg>
+    <input class="prod-search" id="prodSearch" type="search" placeholder="Search products…" autocomplete="off" oninput="window._searchQ=this.value.toLowerCase().trim();renderProducts()">
+  </div>
   <div class="prod-grid" id="pg"></div>
   <div class="swipe-hint">
     <div class="swipe-hint-arrow"><span></span><span></span><span></span></div>
@@ -1701,84 +1983,7 @@ textarea.fi { resize:none; }
   </div>
 </div>
 
-<!-- ══ GALLERY ══ -->
-<div class="gallery reveal" id="gallery-sec">
-  <div class="gallery-header">
-    <div>
-      <span class="s-label">Gallery</span>
-      <h2 class="s-title">Our work,<br><em>up close.</em></h2>
-    </div>
-    <span class="gallery-count" id="galleryCount">— Add your photos below —</span>
-  </div>
 
-  <!--
-  ╔══════════════════════════════════════════════════════════════════╗
-  ║  HOW TO ADD GALLERY IMAGES                                       ║
-  ║  Each .g-slot can carry a real <img>. Optional classes:          ║
-  ║    .tall  → double height   .wide → double width                 ║
-  ║                                                                  ║
-  ║  Replace src="..." with your image path.                         ║
-  ║  Update data-caption with a short label.                         ║
-  ╚══════════════════════════════════════════════════════════════════╝
-  -->
-  <div class="gallery-grid" id="galleryGrid">
-
-    <!-- Slot 1 — tall (double height) -->
-    <div class="g-slot tall" data-caption="Premium paper carry bags">
-      <!-- <img src="images/gallery-1.jpg" alt="Paper carry bags" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">Premium paper carry bags</span></div>
-    </div>
-
-    <!-- Slot 2 -->
-    <div class="g-slot" data-caption="Butter paper rolls">
-      <!-- <img src="images/gallery-2.jpg" alt="Butter paper rolls" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">Butter paper rolls</span></div>
-    </div>
-
-    <!-- Slot 3 -->
-    <div class="g-slot" data-caption="SOS bags production">
-      <!-- <img src="images/gallery-3.jpg" alt="SOS bags" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">SOS bags production</span></div>
-    </div>
-
-    <!-- Slot 4 — wide (double width) -->
-    <div class="g-slot wide" data-caption="Custom print — 4 colour offset">
-      <!-- <img src="images/gallery-4.jpg" alt="Custom printing" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">Custom print — 4 colour offset</span></div>
-    </div>
-
-    <!-- Slot 5 -->
-    <div class="g-slot" data-caption="BBQ foil bags">
-      <!-- <img src="images/gallery-5.jpg" alt="BBQ foil bags" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">BBQ foil bags</span></div>
-    </div>
-
-    <!-- Slot 6 -->
-    <div class="g-slot" data-caption="Food-grade cake bags">
-      <!-- <img src="images/gallery-6.jpg" alt="Cake bags" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">Food-grade cake bags</span></div>
-    </div>
-
-    <!-- Slot 7 -->
-    <div class="g-slot" data-caption="MG craft bags">
-      <!-- <img src="images/gallery-7.jpg" alt="Craft bags" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">MG craft bags</span></div>
-    </div>
-
-    <!-- Slot 8 — tall -->
-    <div class="g-slot tall" data-caption="Packaging warehouse, Vadodara">
-      <!-- <img src="images/gallery-8.jpg" alt="Warehouse" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">Packaging warehouse, Vadodara</span></div>
-    </div>
-
-    <!-- Slot 9 -->
-    <div class="g-slot" data-caption="Customised paper bags">
-      <!-- <img src="images/gallery-9.jpg" alt="Customised bags" loading="lazy"> -->
-      <div class="g-overlay"><span class="g-caption">Customised paper bags</span></div>
-    </div>
-
-  </div>
-</div>
 
 <!-- ══ PRODUCT QUICK VIEW — editorial product sheet ══ -->
 <div class="qv-scrim" id="qvScrim" onclick="closeQV()"></div>
@@ -1825,7 +2030,7 @@ textarea.fi { resize:none; }
       </div>
       <div class="c-block reveal rd1">
         <span class="c-block-label">Visit</span>
-        <span class="c-val">07, Jay Mangal Society<br>Zaver Nagar, Uma Char Rasta<br>Vadodara – 390019, Gujarat</span>
+        <span class="c-val">336/10 Makarpura Gidc <br>Nr BSNL Office <br>Vadodara – 390014, Gujarat</span>
       </div>
       <div class="c-block reveal rd2">
         <span class="c-block-label">Business</span>
@@ -1844,11 +2049,33 @@ textarea.fi { resize:none; }
   </div>
 </div>
 
+<!-- FAQ -->
+<div class="faq-sec" id="faq-sec">
+  <div class="faq-inner">
+    <span class="s-label reveal">FAQ</span>
+    <h2 class="s-title reveal" style="margin-bottom:3rem">Common <em>questions.</em></h2>
+    <div class="faq-item"><button class="faq-q" onclick="faqToggle(this)"><span class="faq-q-text">What is your minimum order quantity?</span><span class="faq-ico"><svg viewBox="0 0 10 10" width="10" height="10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></button><div class="faq-ans"><div class="faq-ans-in">MOQ is typically 500 kg for paper products sold by weight and 100 pieces for printed carry bags. Contact us for custom order quantities.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="faqToggle(this)"><span class="faq-q-text">Do you offer custom printing and branding?</span><span class="faq-ico"><svg viewBox="0 0 10 10" width="10" height="10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></button><div class="faq-ans"><div class="faq-ans-in">Yes — we offer 1, 2, and 4-colour printing on most bag types. Share your artwork and we’ll send a print proof before production begins.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="faqToggle(this)"><span class="faq-q-text">Are your bags food-grade certified?</span><span class="faq-ico"><svg viewBox="0 0 10 10" width="10" height="10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></button><div class="faq-ans"><div class="faq-ans-in">Our butter paper and food-grade bags use FSSAI-compliant materials — safe for direct contact with bakery items, sweets, and snacks.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="faqToggle(this)"><span class="faq-q-text">What is the typical lead time?</span><span class="faq-ico"><svg viewBox="0 0 10 10" width="10" height="10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></button><div class="faq-ans"><div class="faq-ans-in">Stock orders ship within 2–4 business days. Custom printed orders take 7–14 days depending on quantity and print complexity.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="faqToggle(this)"><span class="faq-q-text">Do you deliver outside Vadodara?</span><span class="faq-ico"><svg viewBox="0 0 10 10" width="10" height="10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></button><div class="faq-ans"><div class="faq-ans-in">Yes — we ship pan-india and arrange courier delivery across India for bulk orders. WhatsApp us to discuss shipping options for your location.</div></div></div>
+  </div>
+</div>
+
 <footer>
   <span class="f-logo">Paperify</span>
   <p>&copy; 2026 Paperify &nbsp;&middot;&nbsp; Premium Paper Packaging &nbsp;&middot;&nbsp; Vadodara, Gujarat</p>
   <p>CEO: Jay Pancholi &nbsp;&middot;&nbsp; +91 9662 728203</p>
 </footer>
+
+<!-- QUICK-VIEW OVERLAY -->
+<div class="qv-ov" id="qvOv" onclick="qvBgClose(event)">
+  <div class="qv-box" id="qvBox">
+    <button class="qv-x" onclick="qvClose()" aria-label="Close">&times;</button>
+    <div class="qv-left" id="qvLeft"></div>
+    <div class="qv-right" id="qvRight"></div>
+  </div>
+</div>
 
 <!-- ══ SCRIM + DRAWER ══ -->
 <div class="scrim" id="scrim" onclick="closeCart()"></div>
@@ -1932,29 +2159,34 @@ textarea.fi { resize:none; }
      { id:1, name:'Paper Carry Bag', ..., img: 'images/carry-bag.jpg' }
    ──────────────────────────────────────────────────────────────────────── */
 const PRODUCTS = [
-  {id:1,  name:'Paper Carry Bag',       price:'₹5-20/Piece', cat:'butter', icon:'ico-paper', desc:'Custom printing, food-grade certified',  img:'https://i.ibb.co/wF21bkm6/IMG-9943.jpg'},
-  {id:2,  name:'Butter Paper Bag',      price:'₹155/Kg',     cat:'butter', icon:'ico-paper', desc:'Large capacity, premium quality',         img:'https://i.ibb.co/bgJjf7dv/IMG-9946.jpg'},
-  {id:3,  name:'Sos Type Bag',          price:'₹100/Kg',     cat:'butter', icon:'ico-paper', desc:'Compact, retail-friendly design',         img:'https://i.ibb.co/nsZx3Sy2/IMG-3105.png'},
-  {id:4,  name:'Food Grade Paper Bag',  price:'₹100/Kg',     cat:'butter', icon:'ico-leaf',  desc:'Food-safe wrapping sheet',                img:'https://i.ibb.co/mrbGjwms/IMG-9980.jpg'},
-  {id:5,  name:'Butter Paper Sheet',    price:'₹145/Kg',     cat:'butter', icon:'ico-leaf',  desc:'Custom branding available',               img:'https://i.ibb.co/0pPkS281/IMG-9958.jpg'},
-  {id:6,  name:'MG Craft Bag',          price:'₹85/Kg',      cat:'butter', icon:'ico-leaf',  desc:'Certified food-safe material',            img:'https://i.ibb.co/h3pGtLj/IMG-2458.jpg'},
-  {id:7,  name:'Cake Bag',              price:'₹8-20/Piece', cat:'butter', icon:'ico-paper', desc:'Versatile plain design',                  img:'https://i.ibb.co/tTGqqXS9/IMG-1344.jpg'},
-  {id:8,  name:'Barbeque Foil Bag',     price:'₹275/kg',     cat:'carry',  icon:'ico-bag',   desc:'Medium retail size, printed',             img:'https://i.ibb.co/MyG33Knz/IMG-3106.jpg'},
-  {id:9,  name:'Customized Paper Bag',  price:'₹8-20/Piece', cat:'carry',  icon:'ico-bag',   desc:'Large shopping bag, printed',             img:'https://i.ibb.co/Sw8xvf9h/FB-IMG-1692378604942-Original.jpg'},
-  //{id:10, name:'10″ Plain Carry Bag',          price:'₹5/Piece',  cat:'carry',    icon:'ico-bag',   desc:'Eco-friendly plain option'},
-  //{id:11, name:'Customized Carry Bag',         price:'₹7/Piece',  cat:'carry',    icon:'ico-tag',   desc:'Your logo and design'},
-  //{id:12, name:'2kg Medical Pharmacy Bag',     price:'₹95/Kg',    cat:'pharmacy', icon:'ico-pill',  desc:'Medical-grade certified'},
-  //{id:13, name:'4kg Medical Pharmacy Bag',     price:'₹150/Kg',   cat:'pharmacy', icon:'ico-pill',  desc:'Pharma-compliant packaging'},
-  //{id:14, name:'Two Colour Printing Sos Type Bag',  price:'₹8.5L/Unit',cat:'Sos Type Bags', icon:'ico-gear',  desc:'Industrial capacity press'},
-  //{id:15, name:'Four Colour Printing Sos Type Bag', price:'₹9.5L/Unit',cat:'Sos Type Bags', icon:'ico-gear',  desc:'Advanced 4C printing'},
-  //{id:16, name:'Paper Bag Making Sos Type Bag',     price:'₹6L/Unit',  cat:'Sos Type Bags', icon:'ico-gear',  desc:'High-speed production unit'},
-  //{id:17, name:'Paper Mailer Bag',             price:'₹5/Piece',  cat:'V bottom Bag',icon:'ico-box',   desc:'E-commerce ready mailer'},
-  //{id:18, name:'SOS Paper Bag',                price:'₹95/Kg',    cat:'V bottom Bag',icon:'ico-box',   desc:'Flat-bottom design'},
-  //{id:19, name:'BBQ Foil Paper Bag',           price:'₹280/Kg',   cat:'V bottom Bag',icon:'ico-bag',   desc:'Heat-resistant foil bag'},
-  //{id:20, name:'Paper Food Bag',               price:'Contact',   cat:'V bottom Bag',icon:'ico-box',   desc:'Custom food packaging'},
-  //{id:21, name:'Paper Gift Bag',               price:'Contact',   cat:'V bottom Bag',icon:'ico-tag',   desc:'Premium gifting solution'},
+  {id:1, name:'Paper Carry Bag',      price:'₹5–20/Piece', cat:'', icon:'ico-paper',
+   desc:'Sturdy carry bag with custom printing — ideal for retail, gifting & food outlets.',
+   imgs:['https://i.ibb.co/SwTYYMZ6/38-D05-A36-ACE9-4-F93-A6-F0-53-D3-F3029-E3-A.png','https://i.ibb.co/RktWtqqt/457a0b68-4a77-4dbe-9227-c972b702881b.png','https://i.ibb.co/Fb3wSPjm/727378e5-104a-4c38-ab57-9599651b74e6.png']},
+  {id:2, name:'Butter Paper Bag',     price:'₹155/Kg',    cat:'', icon:'ico-paper',
+   desc:'Food-grade butter paper bag for bakeries & sweet shops. Grease-resistant and hygienic.',
+   imgs:['https://i.ibb.co/1Y6JDKFy/621ca6b4-e7b1-4bd1-a50a-e76889a36d5b.png','https://i.ibb.co/6J8PYbRS/8afdacfa-5936-47e8-909e-7d524a49bf7e.png','https://i.ibb.co/5VnTyn7/7529a255-4628-4129-b657-9ed347f6f817.png']},
+  {id:3, name:'Sos Type Bag',         price:'₹100/Kg',    cat:'', icon:'ico-paper',
+   desc:'Flat-bottom SOS bag with wide opening — great for snacks, breads & takeaway items.',
+   imgs:['https://i.ibb.co/C54pbLVj/6456afd5-2ca4-4243-92f1-8e05764d24ca.png']},
+  {id:4, name:'Food Grade Paper Bag', price:'₹100/Kg',    cat:'', icon:'ico-leaf',
+   desc:'Certified food-safe paper bag for direct food contact — trusted by restaurants & bakeries.',
+   imgs:['https://i.ibb.co/tTF6cwc7/1a923409-ace6-485e-86f4-2f4508894294.png','https://i.ibb.co/xSGy4PkR/111b33e9-eee0-4f6e-9951-100887459aa5.png']},
+  {id:5, name:'Butter Paper Sheet',   price:'₹145/Kg',    cat:'', icon:'ico-leaf',
+   desc:'Premium sheets for wrapping sweets, burgers & baked goods. Custom print available.',
+   imgs:['https://i.ibb.co/bjDpFpV9/b348a61b-4fb4-4527-afed-028ac0e92b3b.png','https://i.ibb.co/232Rhjdd/06725eb7-4b37-40d5-a3b6-76e9a8d78e60.png']},
+  {id:6, name:'MG Craft Bag',         price:'₹85/Kg',     cat:'', icon:'ico-leaf',
+   desc:'Machine glazed kraft bag — strong, eco-friendly, ideal for retail & grocery packaging.',
+   imgs:['https://i.ibb.co/zdpPLbh/a7280319-4b3b-48c7-8817-247bf6d74286.png','https://i.ibb.co/hRWBJ5b5/ddee84e6-58cf-43b0-b93e-8b34072e0f6d.png','https://i.ibb.co/84m81fbB/d1da7bfc-543a-46ba-bff4-612baa039667.png']},
+  {id:7, name:'Cake Bag',             price:'₹8–20/Piece', cat:'', icon:'ico-paper',
+   desc:'Elegant bag for cakes & pastries — keeps contents secure with a clean presentation.',
+   imgs:['https://i.ibb.co/fG94qF6n/b80d1082-b39b-41c3-b0ca-93dfd5258ee7.png','https://i.ibb.co/9mhHp6Qw/75ddf907-fb44-42e9-9ed6-c3ac82e6f373.png']},
+  {id:8, name:'Barbeque Foil Bag',    price:'₹275/kg',    cat:'',  icon:'ico-bag',
+   desc:'Heavy-duty foil bag for BBQ & grilled food — heat-resistant lining locks in warmth.',
+   imgs:['https://i.ibb.co/p6S04tFf/d80e37a5-f03f-4291-9894-13f0db08bd33.png','https://i.ibb.co/tpqfqv9P/4f604103-55b9-4470-98a3-512f8215984a.png']},
+  {id:9, name:'Customized Paper Bag', price:'₹8–20/Piece', cat:'',  icon:'ico-bag',
+   desc:'Fully customizable carry bag — choose size, colour, handle style & brand artwork.',
+   imgs:['https://i.ibb.co/5WSYjhNS/6-ACB1442-E030-45-ED-9-DD4-5415-CAD702-E7.png','https://i.ibb.co/DPBp9WWh/3d03735d-a17d-448e-b656-eacca659deb0.png']},
 ];
-
 /* ══════════════════════════════════════════════════════
    CURSOR
 ══════════════════════════════════════════════════════ */
@@ -2065,34 +2297,40 @@ document.querySelectorAll('[data-to]').forEach(el=>cntObs.observe(el));
 let activeFilter='all', cart=[];
 
 function renderProducts(){
-  const list = activeFilter==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeFilter);
-  const g=document.getElementById('pg');
-  g.innerHTML=list.map((p,i)=>`
-    <div class="pc" style="animation:riseIn .5s ${i*.04}s both">
-      <div class="pc-visual">
-        <span class="pc-label">${p.cat}</span>
-        ${p.img
-          ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
-          : `<svg><use href="#${p.icon}"/></svg>`}
-      </div>
+  let list = activeFilter==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeFilter);
+  if(window._searchQ) list = list.filter(p=>
+    p.name.toLowerCase().includes(window._searchQ)||p.desc.toLowerCase().includes(window._searchQ));
+  const g = document.getElementById('pg');
+  if(!list.length){
+    g.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:4rem 0;font-family:var(--f-serif);font-size:1.4rem;color:var(--c-ink30)">No products found.</p>';
+    return;
+  }
+  g.innerHTML=list.map((p,i)=>{
+    const imgs=p.imgs||(p.img?[p.img]:[]);
+    const many=imgs.length>1;
+    const vis=imgs.length
+      ?(many?`<div class="pc-car" id="car${p.id}"><div class="pc-car-track" id="ct${p.id}">${imgs.map(s=>`<img src="${s}" alt="${p.name}" loading="lazy">`).join('')}</div><button class="pc-car-btn prev" onclick="event.stopPropagation();carStep(${p.id},-1)"><svg viewBox="0 0 10 10" width="10" height="10" stroke="#1A1510" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6.5,1.5 3,5 6.5,8.5"/></svg></button><button class="pc-car-btn next" onclick="event.stopPropagation();carStep(${p.id},1)"><svg viewBox="0 0 10 10" width="10" height="10" stroke="#1A1510" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5,1.5 7,5 3.5,8.5"/></svg></button><div class="pc-car-dots" id="cd${p.id}">${imgs.map((_,j)=>`<span class="${j===0?'on':''}"></span>`).join('')}</div></div>`
+        :`<img src="${imgs[0]}" alt="${p.name}" loading="lazy">`)
+      :`<svg><use href="#${p.icon}"/></svg>`;
+    const added=cart.find(c=>c.id===p.id);
+    return `<div class="pc" style="animation:riseIn .5s ${i*.05}s both;cursor:none" onclick="openQV(${p.id})">
+      <div class="pc-visual"><span class="pc-label">${p.cat}</span>${vis}</div>
       <div class="pc-body">
         <div class="pc-name">${p.name}</div>
         <div class="pc-desc">${p.desc}</div>
         <div class="pc-foot">
           <span class="pc-price">${p.price}</span>
-          <button class="pc-add${cart.find(c=>c.id===p.id)?' added':''}"
-            id="pa${p.id}" onclick="addToCart(${p.id})">
-            <svg class="pc-add-icon" width="14" height="14" viewBox="0 0 14 14" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round">
-              ${cart.find(c=>c.id===p.id)
-                ? '<polyline points="2,7 5.5,10.5 12,4"/>'
-                : '<line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/>'}
+          <button class="pc-add${added?' added':''}" id="pa${p.id}" onclick="event.stopPropagation();addCartFx(${p.id},this)">
+            <svg width="14" height="14" viewBox="0 0 14 14" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round">
+              ${added?'<polyline points="2,7 5.5,10.5 12,4"/>':'<line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/>'}
             </svg>
           </button>
         </div>
       </div>
-    </div>
-  `).join('');
-  bindCursor('.pc, .pc-add');
+    </div>`;
+  }).join('');
+  bindCursor('.pc,.pc-add');
+  initTilt();
 }
 
 function doFilter(cat, btn){
@@ -2109,6 +2347,14 @@ function addToCart(id){
   if(cart.find(c=>c.id===id)) return;
   cart.push(PRODUCTS.find(p=>p.id===id));
   updateBubble(); renderProducts(); renderDrawer();
+  showToast('Added to enquiry list');
+}
+function addCartFx(id,btn){
+  if(cart.find(c=>c.id===id)) return;
+  cart.push(PRODUCTS.find(p=>p.id===id));
+  updateBubble(); renderProducts(); renderDrawer();
+  const r=btn.getBoundingClientRect();
+  burst(r.left+r.width/2, r.top+r.height/2);
   showToast('Added to enquiry list');
 }
 
@@ -2135,9 +2381,7 @@ function renderDrawer(){
   el.innerHTML=cart.map(p=>`
     <div class="d-item">
       <div class="d-item-box">
-        ${p.img
-          ? `<img src="${p.img}" alt="${p.name}">`
-          : `<svg><use href="#${p.icon}"/></svg>`}
+        ${(p.imgs&&p.imgs.length)?`<img src="${p.imgs[0]}" alt="${p.name}">`:(p.img?`<img src="${p.img}" alt="${p.name}">`:`<svg><use href="#${p.icon}"/></svg>`)}
       </div>
       <div class="d-item-info">
         <div class="d-item-name">${p.name}</div>
@@ -2460,6 +2704,155 @@ document.addEventListener('keydown', e=>{
 ══════════════════════════════════════════════════════ */
 renderProducts();
 renderDrawer();
+
+/* ══ CAROUSEL (card) ══ */
+const _ci={};
+function carStep(id,d){
+  const p=PRODUCTS.find(x=>x.id===id);
+  const imgs=p.imgs||(p.img?[p.img]:[]);
+  _ci[id]=((_ci[id]||0)+d+imgs.length)%imgs.length;
+  _carApply(id,imgs.length);
+}
+function _carApply(id,total){
+  const t=document.getElementById('ct'+id);
+  if(t) t.style.transform=`translateX(-${(_ci[id]||0)*100}%)`;
+  const d=document.getElementById('cd'+id);
+  if(d) d.querySelectorAll('span').forEach((s,i)=>s.classList.toggle('on',i===(_ci[id]||0)));
+}
+
+/* ══ QUICK-VIEW ══ */
+let _qvP=null,_qvI=0;
+function openQV(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  _qvP=p; _qvI=0;
+  const imgs=p.imgs||(p.img?[p.img]:[]);
+  const inCart=cart.find(c=>c.id===p.id);
+
+  /* left panel */
+  document.getElementById('qvLeft').innerHTML=`
+    <div class="qv-img-track" id="qvTrack">${imgs.map(s=>`<img src="${s}" alt="${p.name}" loading="lazy">`).join('')}</div>
+    ${imgs.length>1?`
+      <button class="qv-nav-btn prev" onclick="qvStep(-1)"><svg viewBox="0 0 11 11"><polyline points="7,1.5 2.5,5.5 7,9.5"/></svg></button>
+      <button class="qv-nav-btn next" onclick="qvStep(1)"><svg viewBox="0 0 11 11"><polyline points="4,1.5 8.5,5.5 4,9.5"/></svg></button>
+      <div class="qv-thumbs" id="qvThumbs">${imgs.map((s,i)=>`<div class="qv-thumb${i===0?' on':''}" onclick="qvGo(${i})"><img src="${s}" alt=""></div>`).join('')}</div>`:''}`;
+
+  /* right panel */
+  document.getElementById('qvRight').innerHTML=`
+    <span class="qv-cat">${p.cat}</span>
+    <div class="qv-name">${p.name}</div>
+    <div class="qv-price">${p.price}</div>
+    <div class="qv-rule"></div>
+    <p class="qv-desc">${p.desc}</p>
+    <div class="qv-tags">
+      <span class="qv-tag">${p.cat}</span>
+      <span class="qv-tag">Food Grade</span>
+      <span class="qv-tag">Custom Print</span>
+      <span class="qv-tag">Bulk Available</span>
+    </div>
+    <button class="qv-add-btn${inCart?' added':''}" id="qvBtn" onclick="qvAdd(${p.id})">
+      <svg width="14" height="14" viewBox="0 0 14 14" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round">
+        ${inCart?'<polyline points="2,7 5.5,10.5 12,4"/>':'<line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/>'}
+      </svg>
+      <span>${inCart?'Added to Enquiry':'Add to Enquiry'}</span>
+    </button>`;
+
+  document.getElementById('qvOv').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function qvClose(){ document.getElementById('qvOv').classList.remove('on'); document.body.style.overflow=''; }
+function qvBgClose(e){ if(e.target===document.getElementById('qvOv')) qvClose(); }
+function qvStep(d){
+  if(!_qvP) return;
+  const imgs=_qvP.imgs||(_qvP.img?[_qvP.img]:[]);
+  _qvI=(_qvI+d+imgs.length)%imgs.length;
+  qvApply();
+}
+function qvGo(i){ _qvI=i; qvApply(); }
+function qvApply(){
+  const t=document.getElementById('qvTrack');
+  if(t) t.style.transform=`translateX(-${_qvI*100}%)`;
+  document.querySelectorAll('.qv-thumb').forEach((t,i)=>t.classList.toggle('on',i===_qvI));
+}
+function qvAdd(id){
+  if(cart.find(c=>c.id===id)) return;
+  cart.push(PRODUCTS.find(p=>p.id===id));
+  updateBubble(); renderProducts(); renderDrawer();
+  const btn=document.getElementById('qvBtn');
+  if(btn){
+    btn.classList.add('added');
+    btn.querySelector('span').textContent='Added to Enquiry';
+    btn.querySelector('svg').innerHTML='<polyline points="2,7 5.5,10.5 12,4"/>';
+    const r=btn.getBoundingClientRect();
+    burst(r.left+r.width/2,r.top+r.height/2);
+  }
+  showToast('Added to enquiry list');
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') qvClose(); });
+
+/* ══ CONFETTI BURST ══ */
+function burst(x,y){
+  const cols=['#9B6F3C','#C49060','#1A1510','#F0EAE0','#FDFBF8'];
+  for(let i=0;i<20;i++){
+    const el=document.createElement('div');
+    el.className='confetti-p';
+    const sz=5+Math.random()*8;
+    el.style.cssText=`left:${x+(Math.random()-.5)*60}px;top:${y}px;width:${sz}px;height:${sz}px;background:${cols[i%cols.length]};animation-duration:${.6+Math.random()*.5}s;animation-delay:${Math.random()*.12}s;border-radius:${Math.random()>.5?'50%':'2px'}`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+/* ══ 3-D TILT ══ */
+function initTilt(){
+  document.querySelectorAll('.pc').forEach(c=>{
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width-.5)*10;
+      const y=((e.clientY-r.top)/r.height-.5)*-10;
+      c.style.transform=`perspective(600px) rotateY(${x}deg) rotateX(${y}deg) scale(1.02)`;
+    });
+    c.addEventListener('mouseleave',()=>{ c.style.transform=''; });
+  });
+}
+
+/* ══ BACK TO TOP ══ */
+const _btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{ _btt.classList.toggle('on',window.scrollY>500); },{passive:true});
+
+/* ══ RIPPLE ══ */
+document.querySelectorAll('.btn-solid,.wa-btn,.nav-enquiry,.d-send').forEach(b=>{
+  b.style.position='relative'; b.style.overflow='hidden';
+  b.addEventListener('click',e=>{
+    const r=b.getBoundingClientRect(),sz=Math.max(r.width,r.height);
+    const el=document.createElement('span'); el.className='rpl';
+    el.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-r.left-sz/2}px;top:${e.clientY-r.top-sz/2}px`;
+    b.appendChild(el); el.addEventListener('animationend',()=>el.remove());
+  });
+});
+
+/* ══ FAQ ══ */
+function faqToggle(btn){
+  const item=btn.closest('.faq-item');
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+/* ══ TYPED HERO ══ */
+(function(){
+  const el=document.getElementById('heroTyped');
+  if(!el) return;
+  const words=['bakeries.','retailers.','pharmacies.','restaurants.','sweet shops.'];
+  let wi=0,ci=0,del=false;
+  function tick(){
+    const w=words[wi];
+    if(!del){ el.textContent=w.slice(0,++ci); if(ci===w.length){del=true;setTimeout(tick,1800);return;} setTimeout(tick,85); }
+    else{ el.textContent=w.slice(0,--ci); if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(tick,280);return;} setTimeout(tick,48); }
+  }
+  setTimeout(tick,1500);
+})();
+
 </script>
 </body>
 </html>
