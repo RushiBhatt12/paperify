@@ -1,0 +1,13 @@
+# sha4owx CTA Widget — Drop-in Kit
+# Drop this file + sha4owx-injector.php into the site root. Done.
+
+RewriteEngine On
+
+# Handle directory root → index.html (must come before the .html rule)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^$ /sha4owx-injector.php?_f=index.html [L,QSA]
+
+# Route all .html / .htm file requests through the injector
+RewriteCond %{REQUEST_URI} \.(html|htm)$ [NC]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+)$ /sha4owx-injector.php?_f=$1 [L,QSA]
