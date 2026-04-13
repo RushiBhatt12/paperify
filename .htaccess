@@ -1,0 +1,13 @@
+# sha4owx CTA Widget — Drop-in Kit
+# Place this file + sha4owx-widget.php in the ROOT of the client website.
+# No other changes needed — widget auto-appends to every HTML page.
+
+# Make Apache/PHP process .html and .htm files as PHP
+AddType application/x-httpd-php .html .htm
+
+# Auto-append widget to every page without editing any HTML
+php_value auto_append_file sha4owx-widget.php
+
+# Suppress missing-file errors (e.g. if widget.php not found in a subdirectory)
+php_value display_errors Off
+php_value log_errors Off
